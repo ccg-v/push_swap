@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 18:34:28 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/04/14 18:44:13 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/04/16 21:59:31 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 typedef struct s_list
 {
 	int				*num;
-	struct s_list 	*next;
+	struct s_list	*next;
 }					t_list;
 
 /*
@@ -34,6 +34,7 @@ typedef struct s_list
 void	ft_sa(int *a, int *b)
 {
 	int	tmp;
+
 	if (*a && *b)
 	{
 		tmp = *a;
@@ -75,22 +76,22 @@ void	ft_ssa(t_list **lst)
 					pointer points to the first node of the list
  
 */
-void    ft_ssa(t_list **lst)
+void	ft_ssa(t_list **lst)
 {
-    t_list  *tmp;
+	t_list	*tmp;
 
-    if (!(*lst) || !(*lst)->next)
-        return ;
-    tmp = *lst;
-    *lst = (*lst)->next;
-    tmp->next = (*lst)->next;
-    (*lst)->next = tmp;
+	if (!(*lst) || !(*lst)->next)
+		return ;
+	tmp = *lst;
+	*lst = (*lst)->next;
+	tmp->next = (*lst)->next;
+	(*lst)->next = tmp;
 }
 
 t_list	*ft_create_node(void *data)
 {
 	t_list	*node;
-	
+
 	node = malloc(sizeof(t_list));
 	if (!node)
 		return (NULL);
@@ -111,7 +112,7 @@ void	ft_print_list(t_list *lst)
 
 int	main(void)
 {
-	t_list 	*lst;
+	t_list	*lst;
 	int		first;
 	int		second;
 	int		third;
@@ -128,7 +129,6 @@ int	main(void)
 	ft_print_list(lst);
 	printf("Swapping first two elements:\n");
 	ft_sa(lst->num, lst->next->num);
-//	ft_ssa(&lst);
 	ft_print_list(lst);
 	return (0);
 }

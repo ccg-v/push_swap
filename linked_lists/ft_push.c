@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 18:45:28 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/04/14 20:16:01 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/04/16 22:03:10 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 typedef struct s_list
 {
 	int				*num;
-	struct s_list 	*next;
+	struct s_list	*next;
 }					t_list;
 
 /*
@@ -27,6 +27,7 @@ typedef struct s_list
 void	ft_push(t_list **lst_a, t_list **lst_b)
 {
 	t_list	*tmp;
+
 	if (lst_b)
 	{	
 		tmp = *lst_b;
@@ -62,13 +63,19 @@ int	main(void)
 {
 	t_list	*lst_a;
 	t_list	*lst_b;
-	int		a1 = 1;
-	int		a2 = 2;
-	int		a3 = 3;
-	int		b1 = 1000;
-	int		b2 = 2000;
-	int		b3 = 3000;
+	int		a1;
+	int		a2;
+	int		a3;
+	int		b1;
+	int		b2;
+	int		b3;
 
+	a1 = 1;
+	a2 = 2;
+	a3 = 3;
+	b1 = 1000;
+	b2 = 2000;
+	b3 = 3000;
 	lst_a = ft_create_node(&a1);
 	lst_a->next = ft_create_node(&a2);
 	lst_a->next->next = ft_create_node(&a3);

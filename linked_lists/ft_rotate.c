@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 22:24:33 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/04/15 00:17:18 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/04/16 21:51:12 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ typedef struct s_list
 					The first element becomes the last one.
 */
 
-void ft_rotate(t_list **lst)
+void	ft_rotate(t_list **lst)
 {
 	t_list	*head;
-	t_list	*tail = NULL;
+	t_list	*tail;
 	t_list	*tmp;
 
+	tail = NULL;
 	head = *lst;
 	tmp = head;
 	*lst = head->next;
@@ -40,7 +41,7 @@ void ft_rotate(t_list **lst)
 	head->next = NULL;
 }
 
-t_list *ft_last_node(t_list *lst)
+t_list	*ft_last_node(t_list *lst)
 {
 	while (lst->next)
 		lst = lst->next;
@@ -72,19 +73,21 @@ void	ft_print_list(t_list *lst)
 int	main(void)
 {
 	t_list	*lst;
-	int		a = 1;
-	int		b = 2;
-	int		c = 3;
-	int		d = 4;
+	int		a;
+	int		b;
+	int		c;
+	int		d;
 
+	a = 1;
+	b = 2;
+	c = 3;
+	d = 4;
 	lst = ft_create_elem(&a);
 	lst->next = ft_create_elem(&b);
 	lst->next->next = ft_create_elem(&c);
 	lst->next->next->next = ft_create_elem(&d);
 	printf("List is: ");
 	ft_print_list(lst);
-//	printf("Last node is: ");
-//	ft_print_list(ft_last_node(lst));
 	ft_rotate(&lst);
 	printf("List rotated is: ");
 	ft_print_list(lst);
