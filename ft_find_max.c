@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_max.c                                      :+:      :+:    :+:   */
+/*   ft_find_max.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:04:03 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/04/25 22:23:43 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:16:24 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*ft_list_max(t_list **lst)
+t_list	*ft_find_max(t_list **lst)
 {
 	t_list	*max_node;
 	t_list	*current_node;

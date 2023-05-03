@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_size.c                                     :+:      :+:    :+:   */
+/*   ft_add_to_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/25 19:28:36 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/03 22:12:26 by ccarrace         ###   ########.fr       */
+/*   Created: 2023/05/03 21:26:31 by ccarrace          #+#    #+#             */
+/*   Updated: 2023/05/03 21:27:08 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	ft_list_size(t_list *lst)
+void	ft_add_to_front(t_list **lst, int value)
 {
-	size_t	i;
+	t_list	*new_node;
 
-	i = 0;
-	while(lst)
+	if (!*lst)
+		*lst = ft_create_node(value);
+	else
 	{
-		i++;
-		lst = lst->next;
+		new_node = ft_create_node(value);
+		new_node->next = *lst;
+		*lst = new_node;
 	}
-	return (i);
 }
-

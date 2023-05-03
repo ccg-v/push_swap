@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_size.c                                     :+:      :+:    :+:   */
+/*   ft_assign_positions.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/25 19:28:36 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/03 22:12:26 by ccarrace         ###   ########.fr       */
+/*   Created: 2023/05/03 22:00:14 by ccarrace          #+#    #+#             */
+/*   Updated: 2023/05/03 22:01:16 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	ft_list_size(t_list *lst)
+void	ft_assign_positions(t_list **lst)
 {
-	size_t	i;
+	t_list *current;
+	int	i;
 
-	i = 0;
-	while(lst)
+	current = *lst;
+	i = 1;
+	while (current)
 	{
+		current->position = i;
 		i++;
-		lst = lst->next;
+		current = current->next;
 	}
-	return (i);
 }
-

@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_size.c                                     :+:      :+:    :+:   */
+/*   ft_add_to_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/25 19:28:36 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/03 22:12:26 by ccarrace         ###   ########.fr       */
+/*   Created: 2023/05/03 21:27:21 by ccarrace          #+#    #+#             */
+/*   Updated: 2023/05/03 21:27:55 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	ft_list_size(t_list *lst)
+void	ft_add_to_back(t_list **lst, int value)
 {
-	size_t	i;
+	t_list	*old_tail;
+	t_list	*new_tail;
+	t_list	*current;
 
-	i = 0;
-	while(lst)
+	if (!*lst)
+		*lst = ft_create_node(value);
+	else
 	{
-		i++;
-		lst = lst->next;
+		current = *lst;
+		new_tail = ft_create_node(value);
+		while (current->next)
+			current = current->next;
+		old_tail = current;
+		old_tail->next = new_tail;
 	}
-	return (i);
 }
-

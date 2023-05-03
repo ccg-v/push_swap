@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_size.c                                     :+:      :+:    :+:   */
+/*   ft_create_node.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/25 19:28:36 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/03 22:12:26 by ccarrace         ###   ########.fr       */
+/*   Created: 2023/05/03 21:25:40 by ccarrace          #+#    #+#             */
+/*   Updated: 2023/05/03 21:26:14 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	ft_list_size(t_list *lst)
+t_list	*ft_create_node(int	num)
 {
-	size_t	i;
-
-	i = 0;
-	while(lst)
-	{
-		i++;
-		lst = lst->next;
-	}
-	return (i);
+	t_list	*node;
+	node = malloc(sizeof(t_list));
+	if (!node)
+		return (NULL);
+	node->value = num;
+	node->next = NULL;
+	return (node);
 }
-

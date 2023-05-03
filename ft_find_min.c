@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_min.c                                      :+:      :+:    :+:   */
+/*   ft_find_min.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:04:03 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/04/25 22:27:34 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/03 21:07:07 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*ft_list_min(t_list **lst)
+t_list	*ft_find_min(t_list **lst)
 {
 	t_list	*min_node;
 	t_list	*current_node;

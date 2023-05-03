@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 01:00:26 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/02 23:18:55 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:46:24 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_update_positions(t_list **lst)
 		current = current->next;
 	}
 }
-
+/*
 int	ft_find_and_index_minimum(t_list *lst)
 {
 	t_list	*current;
@@ -56,7 +56,7 @@ int	ft_find_and_index_minimum(t_list *lst)
 	current = lst;
 	return (min);
 }
-
+*/
 /*	Initializing the 'min' variable with the maximum possible integer value
 	is a common technique used in finding the minimum value in a list. When
    	you initialize the 'min' variable with INT_MAX, any other value in the
@@ -194,6 +194,6 @@ int	main(int argc, char **argv)
 	ft_update_positions(&stack_a);
 	ft_list_indexing(&stack_a);
 	ft_print_list(stack_a);
-	printf("min value is %d\n", ft_find_and_index_minimum(stack_a));
+//	printf("min value is %d\n", ft_find_and_index_minimum(stack_a));
 	return (0);
 }
