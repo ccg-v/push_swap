@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:07:40 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/03 22:09:29 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/05 21:21:44 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <limits.h>	// INT_MAX
 # include <stddef.h>	// size_t
+# include <unistd.h>	// write
 
  typedef struct	s_list
  {

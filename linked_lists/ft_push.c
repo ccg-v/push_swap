@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 18:45:28 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/04/16 22:03:10 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/05 20:40:47 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ typedef struct s_list
 					top of a. Do nothing if b is empty.
 */
 
-void	ft_push(t_list **lst_a, t_list **lst_b)
+void	ft_push(t_list **lst_dst, t_list **lst_src)
 {
 	t_list	*tmp;
 
-	if (lst_b)
+	if (lst_src)
 	{	
-		tmp = *lst_b;
-		*lst_b = (*lst_b)->next;
-		tmp->next = *lst_a;
-		*lst_a = tmp;
+		tmp = *lst_src;
+		*lst_src = (*lst_src)->next;
+		tmp->next = *lst_dst;
+		*lst_dst = tmp;
 	}
 }
 
