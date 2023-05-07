@@ -6,15 +6,15 @@
 /*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:28:36 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/03 22:12:26 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/07 19:08:43 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	ft_list_size(t_list *lst)
+int	ft_list_size(t_list *lst)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while(lst)
@@ -24,4 +24,3 @@ size_t	ft_list_size(t_list *lst)
 	}
 	return (i);
 }
-

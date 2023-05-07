@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:06:20 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/03 22:11:07 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/07 19:10:01 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void ft_index_list(t_list **lst)
 {
     t_list	*current;
 	t_list	*min_node;
-    size_t 	i;
+    int 	i;
 	int		min;
 
  	current = *lst;

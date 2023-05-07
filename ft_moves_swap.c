@@ -1,48 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_movements.c                                     :+:      :+:    :+:   */
+/*   ft_moves_swap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:53:47 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/06 23:12:41 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/07 12:39:06 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_rotate(t_list **stack, char *move_name)
+void	ft_swap(t_list **stack, char *move_name)
 {
-	t_list	*head;
-	t_list	*tail;
 	t_list	*tmp;
 
-	tail = NULL;
-	head = *stack;
-	tmp = head;
-	*stack = head->next;
-	while (tmp->next)
-		tmp = tmp->next;
-	tail = tmp;
-	tail->next = head;
-	head->next = NULL;
-	if (strncmp(move_name, "rr", 3))
+	if (!(*stack) || !(*stack)->next)
+		return ;
+	tmp = *stack;
+	*stack = (*stack)->next;
+	tmp->next = (*stack)->next;
+	(*stack)->next = tmp;
+	if (strncmp(move_name, "ss", 3))
 	{
 		write(1, move_name, 3);
 		write(1, "\n", 1);
 	}
 }
 
-void	ft_rotate_all(t_list **stack_a, t_list **stack_b)
+void	ft_swap_both(t_list **a, t_list **b)
 {
-	ft_rotate(*stack_a, "rr");
-	ft_rotate(*stack_b, "rr");
-	write(1, "rr", 3);
+	ft_swap(a, "ss");
+	ft_swap(b, "ss");
+	write(1, "ss", 3);
 	write(1, "\n", 1);
 }
 
-
+/*
 void	ft_print_list(t_list *lst)
 {
 	while (lst)
@@ -79,10 +74,10 @@ int	main(void)
 	stack_a->next->next = ft_create_node(a_third);
 	stack_a->next->next->next = ft_create_node(a_last);
 	ft_print_list(stack_a);
-	stack_b = ft_create_node(b_first);
-	stack_b->next = ft_create_node(b_second);
-	stack_b->next->next = ft_create_node(b_third);
-	stack_b->next->next->next = ft_create_node(b_last);
+	ft_add_to_back(&stack_b, b_first);
+	ft_add_to_back(&stack_b, b_second);
+	ft_add_to_back(&stack_b, b_third);
+	ft_add_to_back(&stack_b, b_last);
 	ft_print_list(stack_b);
 	ft_swap(&stack_a, "sa");
 	ft_print_list(stack_a);
@@ -93,3 +88,4 @@ int	main(void)
 	ft_print_list(stack_b);	
 	return (0);
 }
+*/

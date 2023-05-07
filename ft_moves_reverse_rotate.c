@@ -1,48 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_movements.c                                     :+:      :+:    :+:   */
+/*   ft_moves_reverse_rotate.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:53:47 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/06 23:12:41 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/07 00:29:10 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_rotate(t_list **stack, char *move_name)
+void	ft_reverse_rotate(t_list **stack, char *move_name)
 {
-	t_list	*head;
-	t_list	*tail;
-	t_list	*tmp;
+	t_list	*current;
+	t_list	*old_head;
+	t_list	*new_head;
+	t_list	*new_tail;
 
-	tail = NULL;
-	head = *stack;
-	tmp = head;
-	*stack = head->next;
-	while (tmp->next)
-		tmp = tmp->next;
-	tail = tmp;
-	tail->next = head;
-	head->next = NULL;
-	if (strncmp(move_name, "rr", 3))
+	old_head = *stack;
+	new_head = NULL;
+	new_tail = NULL;
+	current = *stack;
+	while (current->next)
+	{
+		new_tail = current;
+		current = current->next;
+	}
+	new_head = current;
+	*stack = new_head;
+	new_head->next = old_head;
+	new_tail->next = NULL;
+	if (strncmp(move_name, "rrr", 3))
 	{
 		write(1, move_name, 3);
 		write(1, "\n", 1);
 	}
 }
 
-void	ft_rotate_all(t_list **stack_a, t_list **stack_b)
+void	ft_reverse_rotate_both(t_list **stack_a, t_list **stack_b)
 {
-	ft_rotate(*stack_a, "rr");
-	ft_rotate(*stack_b, "rr");
-	write(1, "rr", 3);
+	ft_reverse_rotate(stack_a, "rrr");
+	ft_reverse_rotate(stack_b, "rrr");
+	write(1, "rrr", 3);
 	write(1, "\n", 1);
 }
 
-
+/*
 void	ft_print_list(t_list *lst)
 {
 	while (lst)
@@ -79,17 +84,18 @@ int	main(void)
 	stack_a->next->next = ft_create_node(a_third);
 	stack_a->next->next->next = ft_create_node(a_last);
 	ft_print_list(stack_a);
-	stack_b = ft_create_node(b_first);
-	stack_b->next = ft_create_node(b_second);
-	stack_b->next->next = ft_create_node(b_third);
-	stack_b->next->next->next = ft_create_node(b_last);
+	ft_add_to_back(&stack_b, b_first);
+	ft_add_to_back(&stack_b, b_second);
+	ft_add_to_back(&stack_b, b_third);
+	ft_add_to_back(&stack_b, b_last);
 	ft_print_list(stack_b);
-	ft_swap(&stack_a, "sa");
+	ft_reverse_rotate(&stack_a, "rra");
 	ft_print_list(stack_a);
-	ft_swap(&stack_b, "sb");
+	ft_reverse_rotate(&stack_b, "rrb");
 	ft_print_list(stack_b);	
-	ft_swap_both(&stack_a, &stack_b);
+	ft_reverse_rotate_both(&stack_a, &stack_b);
 	ft_print_list(stack_a);
 	ft_print_list(stack_b);	
 	return (0);
 }
+*/
