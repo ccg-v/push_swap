@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
+/*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:07:40 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/07 21:58:33 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/12 19:59:48 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,13 @@
  typedef struct	s_list
  {
 		int				value;
-		int				position;
+		int				place;
 		int				index;
 		struct s_list	*next;
  }						t_list;
+
+//			libft
+ long		ft_atol(const char *str);
 
 //			Lists 
  t_list		*ft_create_node(int num);

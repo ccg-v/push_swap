@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_sorted.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccarrace <ccarrace@student.42barcelona.co  +#+  +:+       +#+        */
+/*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 12:27:40 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/07 18:30:31 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/12 19:57:47 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_is_sorted(t_list *lst)
 	tmp = lst;
 	while (tmp->next)
 	{
-		if ((tmp->next->index) - tmp->index != 1)
+		if (tmp->next->value < tmp->value)
 			return (0);
 		tmp = tmp->next;
 	}
