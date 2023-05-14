@@ -6,33 +6,36 @@
 /*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:53:47 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/07 12:39:06 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/14 11:25:27 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_swap(t_list **stack, char *move_name)
+int	ft_swap(t_list **stack, char *move_name, int movements)
 {
 	t_list	*tmp;
 
 	if (!(*stack) || !(*stack)->next)
-		return ;
+		return (0);
 	tmp = *stack;
 	*stack = (*stack)->next;
 	tmp->next = (*stack)->next;
 	(*stack)->next = tmp;
-	if (strncmp(move_name, "ss", 3))
+	if (strncmp(move_name, "ss", 3) != 0)
 	{
 		write(1, move_name, 3);
 		write(1, "\n", 1);
 	}
+	ft_assign_places(stack);
+	movements++;
+	return (movements);
 }
 
-void	ft_swap_both(t_list **a, t_list **b)
+void	ft_swap_both(t_list **a, t_list **b, int movements)
 {
-	ft_swap(a, "ss");
-	ft_swap(b, "ss");
+	ft_swap(a, "ss", movements);
+	ft_swap(b, "ss", movements);
 	write(1, "ss", 3);
 	write(1, "\n", 1);
 }

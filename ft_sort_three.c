@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 20:14:33 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/13 01:28:43 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/14 11:41:19 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,82 +14,119 @@
 #include <unistd.h>
 #include <string.h>
 
-void	ft_sort_three(t_list **stack)
+t_list	*ft_find_max(t_list **lst)
 {
-	int	maximum_index;
+	t_list	*max_node;
+	t_list	*current_node;
 
-	maximum_index = ft_list_size(*stack);
-	if ((*stack)->index == maximum_index)
-		ft_rotate(stack, "ra");
-	else if	((*stack)->next->index == maximum_index)
-		ft_reverse_rotate(stack, "rra");
+	max_node = *lst;
+	current_node = (*lst)->next;
+	while (current_node)
+	{
+		if (current_node->value > max_node->value)
+			max_node = current_node;
+		current_node = current_node->next;
+	}
+	return (max_node);
+}
+
+int	ft_sort_three(t_list **stack, int movements)
+{
+	t_list	*max_node;
+
 	if (!ft_is_sorted(*stack))
-		ft_swap(stack, "sa");
+	{
+		max_node = ft_find_max(stack);
+		if ((*stack)->index == max_node->index)
+			ft_rotate(stack, "ra", movements);
+		else if	((*stack)->next->index == max_node->index)
+			ft_reverse_rotate(stack, "rra", movements);
+		if (!ft_is_sorted(*stack))
+			ft_swap(stack, "sa", movements);
+	}
+	return (movements);
+}
+
+t_list	*ft_find_min(t_list **lst)
+{
+	t_list	*min_node;
+	t_list	*current_node;
+
+	min_node = *lst;
+	current_node = (*lst)->next;
+	while (current_node)
+	{
+		if (current_node->value < min_node->value)
+			min_node = current_node;
+		current_node = current_node->next;
+	}
+	return (min_node);
 }
 /*
-void	ft_sort_five(t_list **stack_a, t_list **stack_b)
-{
-	t_list	*current;
-	int		maximum_index;
-	
-	*stack_b = NULL;
-	current = *stack_a;
-	maximum_index = ft_list_size(*stack_a);
-	while(current->index != maximum_index)
-		current = current->next;
-	if(current->place == 2)
-		ft_rotate(stack_a, "ra");
-	else if(current->place == 3)
-	{
-		ft_rotate(stack_a, "ra");
-		ft_rotate(stack_a, "ra");
-	}
-	else if(current->place == 4)
-	{
-		ft_reverse_rotate(stack_a, "rra");
-		ft_reverse_rotate(stack_a, "rra");
-	}
-	else if(current->place == 5)
-		ft_reverse_rotate(stack_a, "rra");
-	ft_push(stack_b, stack_a, "pb");
-	ft_sort_three(stack_a);
-	ft_push(stack_a, stack_b, "pa");
-	ft_push(stack_a, stack_b, "pa");
-}
-*/
-
 void	ft_send_minimum_index_to_top(t_list **stack)
 {
-	t_list	*current;
-	
-	current = *stack;
-	while(current->index != 1)
-		current = current->next;
-	printf("Minimum value: %d\n", current->value);
-	printf("Minimum place: %d\n", current->place);
-	printf("Minimum index: %d\n", current->index);
-	if(current->place == 2)
-		ft_rotate(stack, "ra");
-	else if(current->place == 3)
-	{
-		ft_rotate(stack, "ra");
-		ft_rotate(stack, "ra");
-	}
-	else if(current->place == 4)
-	{
-		ft_reverse_rotate(stack, "rra");
-		ft_reverse_rotate(stack, "rra");
-	}
-	else if(current->place == 5)
-		ft_reverse_rotate(stack, "rra");	
-}
+	t_list	*min_node;
+	int		stack_len;
+	int		distance_to_top;
+	int		distance_to_bottom;
 
-void	ft_print_list(t_list *lst)
+	min_node = ft_find_min(stack);
+	stack_len = ft_list_size(*stack) + 1;
+	distance_to_top = min_node->place - 1;
+	distance_to_bottom = stack_len - min_node->place;
+	if(distance_to_top <= distance_to_bottom)
+	{
+		while(distance_to_top > 0)
+		{
+			ft_rotate(stack, "ra");
+			distance_to_top--;
+		}
+	}
+	else if(distance_to_bottom < distance_to_top)
+	{
+		while(distance_to_bottom > 0)
+		{
+			ft_reverse_rotate(stack, "rra");
+			distance_to_bottom--;
+		}
+	}
+}
+*/
+int	ft_send_minimum_index_to_top(t_list **stack, int movements)
 {
-	printf("\nValue\tPlace\tIndex\n");
+	t_list	*min_node;
+	int		stack_len;
+	int		distance_to_top;
+	int		distance_to_bottom;
+
+	min_node = ft_find_min(stack);
+	stack_len = ft_list_size(*stack) + 1;
+	distance_to_top = min_node->place - 1;
+	distance_to_bottom = stack_len - min_node->place;
+	if(distance_to_top <= distance_to_bottom)
+	{
+		while(distance_to_top > 0)
+		{
+			ft_rotate(stack, "ra", movements);
+			distance_to_top--;
+		}
+	}
+	else if(distance_to_bottom < distance_to_top)
+	{
+		while(distance_to_bottom > 0)
+		{
+			ft_reverse_rotate(stack, "rra", movements);
+			distance_to_bottom--;
+		}
+	}
+	return (movements);
+}
+void	ft_print_list(t_list *lst, char stack_name)
+{
+	printf("\n%c:\tValue\tPlace\tIndex\n", stack_name);
 	while (lst)
 	{
-		printf("%d\t%d\t%d\n", lst->value, lst->place, lst->index);
+		printf("\t%d\t%d\t%d\n", lst->value, lst->place, lst->index);
 		lst = lst->next;
 	}
 	printf("\n");
@@ -99,9 +136,11 @@ int	main(int argc, char **argv)
 {
 	t_list	*stack_a = NULL;
 	t_list	*stack_b = NULL;
-
-	int		i = 1;
-
+	int		i ;
+	int		movements;
+	
+	i = 1;
+	movements = 0;
 	while (i < argc)
 	{
 		ft_add_to_back(&stack_a, atoi(argv[i]));
@@ -109,16 +148,15 @@ int	main(int argc, char **argv)
 	}
 	ft_assign_places(&stack_a);
 	ft_index_list(&stack_a);
-	ft_print_list(stack_a);
-//	ft_sort_three(&stack_a);
-//	ft_sort_five(&stack_a, &stack_b);
-	if (argc == 6)
+	while(ft_list_size(stack_a) > 3)
 	{
-		ft_send_minimum_index_to_top(&stack_a);
-		ft_push(&stack_b, &stack_a, "pb");
-		ft_send_minimum_index_to_top(&stack_a);
-		ft_push(&stack_b, &stack_a, "pb");
-	}
-	ft_print_list(stack_a);
+		ft_send_minimum_index_to_top(&stack_a, movements);
+		ft_push(&stack_b, &stack_a, "pb", movements);
+	}	
+	ft_sort_three(&stack_a, movements);	
+	while(ft_list_size(stack_b) > 0)
+		ft_push(&stack_a, &stack_b, "pa", movements);
+	ft_print_list(stack_a, 'A');
+printf("Number of movements = %d\n", movements);
 	return (0);
 }

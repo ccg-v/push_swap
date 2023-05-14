@@ -13,7 +13,7 @@
 # --- Constants -------------------------------------------------------------- #
 
 CC				=		gcc
-CFLAGS			=		-MMD -Wall -Wextra -Werror
+CFLAGS			=		-MMD -Wall -Wextra -Werror -g
 HEADER_NAME		=		push_swap.h
 NAME			=		push_swap
 
