@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:07:40 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/14 11:29:58 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/15 23:43:10 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,24 @@
  int		ft_list_size(t_list *lst);
 
 //			Movements
- int		ft_push(t_list **dst, t_list **src, char *stack_name, int movements);
- int		ft_swap(t_list **stack, char *move_name, int movements);
- void		ft_swap_both(t_list **a, t_list **b, int movements);
- int		ft_rotate(t_list **stack, char *move_name, int movements);
- void		ft_rotate_both(t_list **a, t_list **b, int movements);
- int		ft_reverse_rotate(t_list **stack, char *move_name, int movements);
- void		ft_reverse_rotate_both(t_list **a, t_list **b, int movements);
+ void		ft_push(t_list **dst, t_list **src, char *stack_name, int *command_counter);
+ void		ft_swap(t_list **stack, char *move_name, int *command_counter);
+ void		ft_swap_both(t_list **a, t_list **b, int *command_counter);
+ void		ft_rotate(t_list **stack, char *move_name, int *command_counter);
+ void		ft_rotate_both(t_list **a, t_list **b, int *command_counter);
+ void		ft_reverse_rotate(t_list **stack, char *move_name, int *command_counter);
+ void		ft_reverse_rotate_both(t_list **a, t_list **b, int *command_counter);
+
+//			Sorting process
+ int		ft_check_input(int argc, char **argv);
 
 //			Sort utilities
  void		ft_assign_places(t_list **lst);
  void		ft_index_list(t_list **lst);
  int		ft_is_sorted(t_list *lst);
- int		ft_sort_three(t_list **stack, int movements);
+ void		ft_sort_three(t_list **stack, int *command_counter);
+
+ //			Library functions
+ long 		ft_atol(const char *str);
 
 #endif

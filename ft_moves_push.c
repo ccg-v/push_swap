@@ -6,13 +6,13 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:53:47 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/14 11:17:30 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/15 23:21:09 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_push(t_list **dst, t_list **src, char *move_name, int movements)
+void	ft_push(t_list **dst, t_list **src, char *move_name, int *command_counter)
 {
 	t_list	*tmp;
 
@@ -27,8 +27,7 @@ int	ft_push(t_list **dst, t_list **src, char *move_name, int movements)
 	ft_assign_places(dst);
 	write(1, move_name, 3);
 	write(1, "\n", 1);
-	movements++;
-	return (movements);
+	(*command_counter)++;
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 20:14:33 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/14 11:41:19 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/15 23:42:41 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_list	*ft_find_max(t_list **lst)
 	return (max_node);
 }
 
-int	ft_sort_three(t_list **stack, int movements)
+void	ft_sort_three(t_list **stack, int *command_counter)
 {
 	t_list	*max_node;
 
@@ -38,13 +38,12 @@ int	ft_sort_three(t_list **stack, int movements)
 	{
 		max_node = ft_find_max(stack);
 		if ((*stack)->index == max_node->index)
-			ft_rotate(stack, "ra", movements);
+			ft_rotate(stack, "ra", command_counter);
 		else if	((*stack)->next->index == max_node->index)
-			ft_reverse_rotate(stack, "rra", movements);
+			ft_reverse_rotate(stack, "rra", command_counter);
 		if (!ft_is_sorted(*stack))
-			ft_swap(stack, "sa", movements);
+			ft_swap(stack, "sa", command_counter);
 	}
-	return (movements);
 }
 
 t_list	*ft_find_min(t_list **lst)
@@ -62,8 +61,8 @@ t_list	*ft_find_min(t_list **lst)
 	}
 	return (min_node);
 }
-/*
-void	ft_send_minimum_index_to_top(t_list **stack)
+
+void	ft_send_minimum_index_to_top(t_list **stack, int *command_counter)
 {
 	t_list	*min_node;
 	int		stack_len;
@@ -78,7 +77,7 @@ void	ft_send_minimum_index_to_top(t_list **stack)
 	{
 		while(distance_to_top > 0)
 		{
-			ft_rotate(stack, "ra");
+			ft_rotate(stack, "ra", command_counter);
 			distance_to_top--;
 		}
 	}
@@ -86,41 +85,12 @@ void	ft_send_minimum_index_to_top(t_list **stack)
 	{
 		while(distance_to_bottom > 0)
 		{
-			ft_reverse_rotate(stack, "rra");
+			ft_reverse_rotate(stack, "rra", command_counter);
 			distance_to_bottom--;
 		}
 	}
 }
-*/
-int	ft_send_minimum_index_to_top(t_list **stack, int movements)
-{
-	t_list	*min_node;
-	int		stack_len;
-	int		distance_to_top;
-	int		distance_to_bottom;
 
-	min_node = ft_find_min(stack);
-	stack_len = ft_list_size(*stack) + 1;
-	distance_to_top = min_node->place - 1;
-	distance_to_bottom = stack_len - min_node->place;
-	if(distance_to_top <= distance_to_bottom)
-	{
-		while(distance_to_top > 0)
-		{
-			ft_rotate(stack, "ra", movements);
-			distance_to_top--;
-		}
-	}
-	else if(distance_to_bottom < distance_to_top)
-	{
-		while(distance_to_bottom > 0)
-		{
-			ft_reverse_rotate(stack, "rra", movements);
-			distance_to_bottom--;
-		}
-	}
-	return (movements);
-}
 void	ft_print_list(t_list *lst, char stack_name)
 {
 	printf("\n%c:\tValue\tPlace\tIndex\n", stack_name);
@@ -137,26 +107,29 @@ int	main(int argc, char **argv)
 	t_list	*stack_a = NULL;
 	t_list	*stack_b = NULL;
 	int		i ;
-	int		movements;
-	
+	int		command_counter;
+
 	i = 1;
-	movements = 0;
-	while (i < argc)
+	command_counter = 0;
+	if (ft_check_input(argc, argv) == 1)
 	{
-		ft_add_to_back(&stack_a, atoi(argv[i]));
-		i++;
+		while (i < argc)
+		{
+			ft_add_to_back(&stack_a, atoi(argv[i]));
+			i++;
+		}
+		ft_assign_places(&stack_a);
+		ft_index_list(&stack_a);
+		while(ft_list_size(stack_a) > 3)
+		{
+			ft_send_minimum_index_to_top(&stack_a, &command_counter);
+			ft_push(&stack_b, &stack_a, "pb", &command_counter);
+		}	
+		ft_sort_three(&stack_a, &command_counter);
+		while(ft_list_size(stack_b) > 0)
+			ft_push(&stack_a, &stack_b, "pa", &command_counter);
+		ft_print_list(stack_a, 'A');
 	}
-	ft_assign_places(&stack_a);
-	ft_index_list(&stack_a);
-	while(ft_list_size(stack_a) > 3)
-	{
-		ft_send_minimum_index_to_top(&stack_a, movements);
-		ft_push(&stack_b, &stack_a, "pb", movements);
-	}	
-	ft_sort_three(&stack_a, movements);	
-	while(ft_list_size(stack_b) > 0)
-		ft_push(&stack_a, &stack_b, "pa", movements);
-	ft_print_list(stack_a, 'A');
-printf("Number of movements = %d\n", movements);
+printf("Number of commands used: %d\n", command_counter);
 	return (0);
 }

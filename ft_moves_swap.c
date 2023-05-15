@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_moves_swap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
+/*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:53:47 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/14 11:25:27 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/15 23:38:54 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_swap(t_list **stack, char *move_name, int movements)
+void	ft_swap(t_list **stack, char *move_name, int *command_counter)
 {
 	t_list	*tmp;
 
 	if (!(*stack) || !(*stack)->next)
-		return (0);
+		return ;
 	tmp = *stack;
 	*stack = (*stack)->next;
 	tmp->next = (*stack)->next;
@@ -26,18 +26,18 @@ int	ft_swap(t_list **stack, char *move_name, int movements)
 	{
 		write(1, move_name, 3);
 		write(1, "\n", 1);
+		(*command_counter)++;
 	}
 	ft_assign_places(stack);
-	movements++;
-	return (movements);
 }
 
-void	ft_swap_both(t_list **a, t_list **b, int movements)
+void	ft_swap_both(t_list **a, t_list **b, int *command_counter)
 {
-	ft_swap(a, "ss", movements);
-	ft_swap(b, "ss", movements);
+	ft_swap(a, "ss", command_counter);
+	ft_swap(b, "ss", command_counter);
 	write(1, "ss", 3);
 	write(1, "\n", 1);
+	(*command_counter)++;
 }
 
 /*

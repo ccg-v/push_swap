@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_moves_reverse_rotate.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
+/*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:53:47 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/14 11:31:08 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/15 23:40:44 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_reverse_rotate(t_list **stack, char *move_name, int movements)
+void 	ft_reverse_rotate(t_list **stack, char *move_name, int *command_counter)
 {
 	t_list	*current;
 	t_list	*old_head;
@@ -37,17 +37,17 @@ int	ft_reverse_rotate(t_list **stack, char *move_name, int movements)
 	{
 		write(1, move_name, 3);
 		write(1, "\n", 1);
+		(*command_counter)++;
 	}
-	movements++;
-	return (movements);
 }
 
-void	ft_reverse_rotate_both(t_list **stack_a, t_list **stack_b, int movements)
+void	ft_reverse_rotate_both(t_list **stack_a, t_list **stack_b, int *command_counter)
 {
-	ft_reverse_rotate(stack_a, "rrr", movements);
-	ft_reverse_rotate(stack_b, "rrr", movements);
+	ft_reverse_rotate(stack_a, "rrr", command_counter);
+	ft_reverse_rotate(stack_b, "rrr", command_counter);
 	write(1, "rrr", 3);
 	write(1, "\n", 1);
+	(*command_counter)++;
 }
 
 /*

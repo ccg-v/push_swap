@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_moves_rotate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
+/*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:53:47 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/14 11:38:52 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/15 23:40:16 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_rotate(t_list **stack, char *move_name, int movements)
+void	ft_rotate(t_list **stack, char *move_name, int *command_counter)
 {
 	t_list	*head;
 	t_list	*tail;
@@ -32,16 +32,16 @@ int	ft_rotate(t_list **stack, char *move_name, int movements)
 	{
 		write(1, move_name, 3);
 		write(1, "\n", 1);
+		(*command_counter)++;
 	}
-	movements++;
-	return (movements);
 }
 
-void	ft_rotate_both(t_list **a, t_list **b, int movements)
+void	ft_rotate_both(t_list **a, t_list **b, int *command_counter)
 {
-	ft_rotate(a, "rr", movements);
-	ft_rotate(b, "rr", movements);
+	ft_rotate(a, "rr", command_counter);
+	ft_rotate(b, "rr", command_counter);
 	write(1, "rr\n", 3);
+	(*command_counter)++;
 }
 /*
 void	ft_print_list(t_list *lst)
