@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:42:08 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/17 00:06:30 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/18 19:15:16 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_send_minimum_index_to_top(t_list **stack, int *command_counter)
 		}
 	}
 }
-*/
+
 static void	ft_print_list(t_list *lst, char stack_name)
 {
 	printf("\n%c:\tValue\tPlace\tIndex\n", stack_name);
@@ -83,25 +83,30 @@ static void	ft_print_list(t_list *lst, char stack_name)
 	}
 	printf("\n");
 }
-
+*/
 void	ft_sort_complex(t_list **stack_a, t_list **stack_b, int *command_counter)
 {
 	t_list	*current_node;
-	int		mid_value;
+	int		half_stack_size;
 
 	current_node = *stack_a;
-	mid_value = ft_list_size(*stack_a) / 2;
-printf("mid_value = %d\n", mid_value);
+	half_stack_size = ft_list_size(*stack_a) / 2;
 	while(current_node)
 	{
-		if(current_node->index >= mid_value)
+		if(current_node->index <= half_stack_size)
+		{
+			printf("%d is lesser or equal than %d\n", current_node->value, half_stack_size);
 			ft_push(stack_b, stack_a, "pb", command_counter);
+		}
 		else
+		{
+			printf("%d is greater than %d\n", current_node->value, half_stack_size);
 			ft_rotate(stack_a, "ra", command_counter);
+		}
 		current_node = current_node->next;
 	}
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a = NULL;
@@ -121,17 +126,9 @@ int	main(int argc, char **argv)
 		ft_assign_places(&stack_a);
 		ft_index_list(&stack_a);
 		ft_sort_complex(&stack_a, &stack_b, &command_counter);
-/*		while(ft_list_size(stack_a) > 3)
-		{
-			ft_send_minimum_index_to_top(&stack_a, &command_counter);
-			ft_push(&stack_b, &stack_a, "pb", &command_counter);
-		}	
-		ft_sort_three(&stack_a, &command_counter);
-		while(ft_list_size(stack_b) > 0)
-			ft_push(&stack_a, &stack_b, "pa", &command_counter);*/
 		ft_print_list(stack_a, 'A');
 		ft_print_list(stack_b, 'B');
 	}
 printf("Number of commands used: %d\n", command_counter);
 	return (0);
-}
+}*/

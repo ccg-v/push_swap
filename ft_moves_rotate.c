@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:53:47 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/15 23:40:16 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/18 19:15:58 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,18 @@ void	ft_rotate_both(t_list **a, t_list **b, int *command_counter)
 	(*command_counter)++;
 }
 /*
-void	ft_print_list(t_list *lst)
+void	ft_print_both(t_list *lst_a, t_list *lst_b)
 {
-	while (lst)
+	printf("\nA\tB\n");
+	printf("---------\n");
+	while (lst_a || lst_b)
 	{
-		printf("%d ", lst->value);
-		lst = lst->next;
+		printf("%d\t%d\n", lst_a->value, lst_b->value);
+		lst_a = lst_a->next;
+		lst_b = lst_b->next;
 	}
 	printf("\n");
 }
-
 int	main(void)
 {
 	t_list	*stack_a;
@@ -66,6 +68,7 @@ int	main(void)
 	int		b_second;
 	int		b_third;
 	int		b_last;
+	int		command_counter = 0;
 
 	a_first = 1;
 	a_second = 2;
@@ -79,19 +82,16 @@ int	main(void)
 	stack_a->next = ft_create_node(a_second);
 	stack_a->next->next = ft_create_node(a_third);
 	stack_a->next->next->next = ft_create_node(a_last);
-	ft_print_list(stack_a);
 	ft_add_to_back(&stack_b, b_first);
 	ft_add_to_back(&stack_b, b_second);
 	ft_add_to_back(&stack_b, b_third);
 	ft_add_to_back(&stack_b, b_last);
-	ft_print_list(stack_b);
-	ft_rotate(&stack_a, "ra");
-	ft_print_list(stack_a);
-	ft_rotate(&stack_b, "rb");
-	ft_print_list(stack_b);	
-	ft_rotate_both(&stack_a, &stack_b);
-	ft_print_list(stack_a);
-	ft_print_list(stack_b);	
+	ft_print_both(stack_a, stack_b);
+	ft_rotate(&stack_a, "ra", &command_counter);
+	ft_print_both(stack_a, stack_b);
+	ft_rotate(&stack_b, "rb", &command_counter);
+	ft_print_both(stack_a, stack_b);	
+	ft_rotate_both(&stack_a, &stack_b, &command_counter);
+	ft_print_both(stack_a, stack_b);
 	return (0);
-}
-*/
+}*/

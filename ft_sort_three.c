@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 20:14:33 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/16 23:49:50 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/18 19:19:11 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,4 @@ int	main(int argc, char **argv)
 	}
 printf("Number of commands used: %d\n", command_counter);
 	return (0);
-}
-*/
+}*/
