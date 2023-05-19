@@ -6,72 +6,11 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:42:08 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/18 19:15:16 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/20 00:41:02 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/*
-t_list	*ft_find_max(t_list **lst)
-{
-	t_list	*max_node;
-	t_list	*current_node;
-
-	max_node = *lst;
-	current_node = (*lst)->next;
-	while (current_node)
-	{
-		if (current_node->value > max_node->value)
-			max_node = current_node;
-		current_node = current_node->next;
-	}
-	return (max_node);
-}
-
-t_list	*ft_find_min(t_list **lst)
-{
-	t_list	*min_node;
-	t_list	*current_node;
-
-	min_node = *lst;
-	current_node = (*lst)->next;
-	while (current_node)
-	{
-		if (current_node->value < min_node->value)
-			min_node = current_node;
-		current_node = current_node->next;
-	}
-	return (min_node);
-}
-
-void	ft_send_minimum_index_to_top(t_list **stack, int *command_counter)
-{
-	t_list	*min_node;
-	int		stack_len;
-	int		distance_to_top;
-	int		distance_to_bottom;
-
-	min_node = ft_find_min(stack);
-	stack_len = ft_list_size(*stack) + 1;
-	distance_to_top = min_node->place - 1;
-	distance_to_bottom = stack_len - min_node->place;
-	if(distance_to_top <= distance_to_bottom)
-	{
-		while(distance_to_top > 0)
-		{
-			ft_rotate(stack, "ra", command_counter);
-			distance_to_top--;
-		}
-	}
-	else if(distance_to_bottom < distance_to_top)
-	{
-		while(distance_to_bottom > 0)
-		{
-			ft_reverse_rotate(stack, "rra", command_counter);
-			distance_to_bottom--;
-		}
-	}
-}
 
 static void	ft_print_list(t_list *lst, char stack_name)
 {
@@ -83,30 +22,26 @@ static void	ft_print_list(t_list *lst, char stack_name)
 	}
 	printf("\n");
 }
-*/
+
 void	ft_sort_complex(t_list **stack_a, t_list **stack_b, int *command_counter)
 {
-	t_list	*current_node;
-	int		half_stack_size;
+	t_list	**current_node;
+	int		stack_size;
+	int		i;
 
-	current_node = *stack_a;
-	half_stack_size = ft_list_size(*stack_a) / 2;
-	while(current_node)
+	current_node = stack_a;
+	stack_size = ft_list_size(*stack_a);
+	i = 0;
+	while(i < stack_size)
 	{
-		if(current_node->index <= half_stack_size)
-		{
-			printf("%d is lesser or equal than %d\n", current_node->value, half_stack_size);
+		if((*current_node)->index <= (stack_size / 2))
 			ft_push(stack_b, stack_a, "pb", command_counter);
-		}
 		else
-		{
-			printf("%d is greater than %d\n", current_node->value, half_stack_size);
 			ft_rotate(stack_a, "ra", command_counter);
-		}
-		current_node = current_node->next;
+		i++;
 	}
 }
-/*
+
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a = NULL;
@@ -126,9 +61,13 @@ int	main(int argc, char **argv)
 		ft_assign_places(&stack_a);
 		ft_index_list(&stack_a);
 		ft_sort_complex(&stack_a, &stack_b, &command_counter);
+		ft_print_list(stack_a, 'a');
+		ft_print_list(stack_a, 'b');
+		ft_sort_three(&stack_a, &command_counter);
+		ft_sort_three(&stack_b, &command_counter);
 		ft_print_list(stack_a, 'A');
 		ft_print_list(stack_b, 'B');
 	}
 printf("Number of commands used: %d\n", command_counter);
 	return (0);
-}*/
+}

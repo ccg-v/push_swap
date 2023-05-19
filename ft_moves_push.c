@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:53:47 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/15 23:21:09 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/19 23:57:41 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,5 @@ int	main(void)
 	ft_print_list(stack_a);
 	ft_print_list(stack_b);
 	return (0);
-}
-*/
+}*/
+

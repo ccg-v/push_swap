@@ -83,6 +83,28 @@ void	ft_rotate(t_list **stack)
 void ft_parse_list(t_list **lst_a, t_list **lst_b)
 {
     t_list	*current_node;
+	int		half_list;
+
+	current_node = *lst_a;
+	half_list = ft_list_size(*lst_a) / 2;
+	while(current_node)
+	{
+		if(current_node->value <= half_list)
+        {
+            current_node = current_node->next;
+            ft_push(lst_b, lst_a);
+        }
+		else
+        {
+            current_node = current_node->next;
+            ft_rotate(lst_a);
+        }
+	}
+}
+/*
+void ft_parse_list(t_list **lst_a, t_list **lst_b)
+{
+    t_list	*current_node;
     t_list  **new_head;
 	int		half_list;
 
@@ -105,6 +127,7 @@ void ft_parse_list(t_list **lst_a, t_list **lst_b)
 	}
 }
 
+*/
 static void	ft_print_list(t_list *lst, char name)
 {
 	printf("\n%c:\tValue\n", name);
