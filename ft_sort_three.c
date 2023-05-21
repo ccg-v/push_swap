@@ -90,15 +90,20 @@ void	ft_send_minimum_index_to_top(t_list **stack, int *command_counter)
 		}
 	}
 }
+/*	
+*
+*	ESTOY TRANSFORMANDO EL MAIN EN UNA FUNCION PERO ESTA INACABADA
+*
 
 void ft_simple_sort(t_list *stack, int *command_counter)
 {
-	while(ft_list_size(stack_a) > 3)
+	while(ft_list_size(stack) > 3)
 	{
-		ft_send_minimum_index_to_top(&stack_a, &command_counter);
-		ft_push(&stack_b, &stack_a, "pb", &command_counter);
+		ft_send_minimum_index_to_top(&stack, &command_counter);
+		ft_push(&stack_b, &stack, "pb", &command_counter);
 	}
 }
+*/
 
 /*
 void	ft_print_list(t_list *lst, char stack_name)

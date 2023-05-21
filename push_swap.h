@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:07:40 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/16 23:57:44 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/21 17:55:01 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@
 		int				value;
 		int				place;
 		int				index;
+		int				dist_to_right_place;
 		struct s_list	*next;
  }						t_list;
 
-//			libft
- long		ft_atol(const char *str);
+//			library funcions
+long		ft_atol(const char *str);
 
 //			Lists 
  t_list		*ft_create_node(int num);
@@ -48,17 +49,17 @@
  void		ft_reverse_rotate(t_list **stack, char *move_name, int *command_counter);
  void		ft_reverse_rotate_both(t_list **a, t_list **b, int *command_counter);
 
+//			Feeding struct with data
+ void		ft_assign_places(t_list **lst);
+ void 		ft_assign_dist_to_right_place(t_list **lst);
+
 //			Sorting process
  int		ft_check_input(int argc, char **argv);
 
 //			Sort utilities
- void		ft_assign_places(t_list **lst);
  void		ft_index_list(t_list **lst);
  int		ft_is_sorted(t_list *lst);
  void		ft_sort_three(t_list **stack, int *command_counter);
  void		ft_sort_complex(t_list **stack_a, t_list **stack_b, int *command_counter);
-
- //			Library functions
- long 		ft_atol(const char *str);
 
 #endif
