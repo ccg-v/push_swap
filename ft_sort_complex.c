@@ -6,12 +6,12 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:42:08 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/21 23:36:50 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/22 23:59:05 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/*
+
 int	ft_abs(int num)
 {
 	if (num < 0)
@@ -79,7 +79,7 @@ void	ft_split_stack_in_two(t_list **stack_a, t_list **stack_b, int *command_coun
 		i++;
 	}
 }
-*/
+
 
 /*	
 static void	ft_print_list(t_list *lst, char stack_name)
@@ -93,7 +93,52 @@ static void	ft_print_list(t_list *lst, char stack_name)
 	printf("\n");
 }
 */
+/*
+static int	get_target(t_list **a, int b_idx,int target_idx, int target_pos)
+{
+	t_list	*tmp_a;
 
+	tmp_a = *a;
+	while (tmp_a)
+	{
+		if (tmp_a->index > b_idx && tmp_a->index < target_idx)
+		{
+			target_idx = tmp_a->index;
+			target_pos = tmp_a->place;
+		}
+		tmp_a = tmp_a->next;
+	}
+	if (target_idx != INT_MAX)
+		return (target_pos);
+	tmp_a = *a;
+	while (tmp_a)
+	{
+		if (tmp_a->index < target_idx)
+		{
+			target_idx = tmp_a->index;
+			target_pos = tmp_a->place;
+		}
+		tmp_a = tmp_a->next;
+	}
+	return (target_pos);
+}
+
+void	get_target_position(t_list **a, t_list **b)
+{
+	t_list	*tmp_b;
+	int		target_pos;
+
+	tmp_b = *b;
+	target_pos = 0;
+	while (tmp_b)
+	{
+		target_pos = get_target(a, tmp_b->index, INT_MAX, target_pos);
+		tmp_b->target_pos = target_pos;
+		tmp_b = tmp_b->next;
+	}
+}
+*/
+/*
 static void	ft_print_list(t_list *lst, char stack_name)
 {
 	printf("%c: ", stack_name);
@@ -104,7 +149,8 @@ static void	ft_print_list(t_list *lst, char stack_name)
 	}
 	printf("\n");
 }
-
+*/
+/*
 static void	push_all_save_three(t_list **stack_a, t_list **stack_b, int *command_counter)
 {
 	int	stack_size;
@@ -119,7 +165,7 @@ static void	push_all_save_three(t_list **stack_a, t_list **stack_b, int *command
 		if ((*stack_a)->index <= stack_size / 2)
 		{
 			ft_push(stack_b, stack_a, "pb", command_counter);
-printf("----------------------------------------\n");
+//printf("----------------------------------------\n");
 ft_print_list(*stack_a, 'a');
 ft_print_list(*stack_b, 'b');
 printf("----------------------------------------\n");
@@ -128,7 +174,7 @@ printf("----------------------------------------\n");
 		else
 		{
 			ft_rotate(stack_a, "ra", command_counter);
-printf("----------------------------------------\n");
+//printf("----------------------------------------\n");
 ft_print_list(*stack_a, 'a');
 ft_print_list(*stack_b, 'b');
 printf("----------------------------------------\n");
@@ -138,14 +184,14 @@ printf("----------------------------------------\n");
 	while (stack_size - pushed > 3)
 	{
 		ft_push(stack_b, stack_a, "pb", command_counter);
-printf("----------------------------------------\n");
+//printf("----------------------------------------\n");
 ft_print_list(*stack_a, 'a');
 ft_print_list(*stack_b, 'b');
 printf("----------------------------------------\n");
 		pushed++;
 	}
 }
-
+*/
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a = NULL;
@@ -166,12 +212,14 @@ int	main(int argc, char **argv)
 		stack_size = ft_list_size(stack_a);
 		ft_index_list(&stack_a);
 		ft_assign_places(&stack_a);
-//		ft_assign_dist_to_right_place(&stack_a);
+		ft_assign_dist_to_right_place(&stack_a);
+//get_target_position(&stack_a, &stack_b);
 ft_print_list(stack_a, 'a');
 ft_print_list(stack_b, 'b');
 printf("----------------------------------------\n");
-push_all_save_three(&stack_a, &stack_b, &command_counter);
-/*		while (ft_is_sorted(stack_a) == 0)
+//push_all_save_three(&stack_a, &stack_b, &command_counter);
+//ft_split_stack_in_two(&stack_a, &stack_b, &command_counter);
+		while (ft_is_sorted(stack_a) == 0)
 		{
 			ft_move_to_top_farthest(&stack_a, &command_counter);
 			if (!ft_is_sorted(stack_a))
@@ -180,7 +228,7 @@ push_all_save_three(&stack_a, &stack_b, &command_counter);
 				if (!ft_is_sorted(stack_a))
 					ft_swap_both(&stack_b, &stack_a, &command_counter);
 			}
-		}*/
+		}
 ft_print_list(stack_a, 'a');
 ft_print_list(stack_b, 'b');
 printf("----------------------------------------\n");

@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:07:40 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/21 17:55:01 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/22 23:58:21 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 		int				place;
 		int				index;
 		int				dist_to_right_place;
+		int				target_pos;
 		struct s_list	*next;
  }						t_list;
 
@@ -61,5 +62,7 @@ long		ft_atol(const char *str);
  int		ft_is_sorted(t_list *lst);
  void		ft_sort_three(t_list **stack, int *command_counter);
  void		ft_sort_complex(t_list **stack_a, t_list **stack_b, int *command_counter);
+
+ void		ft_print_list(t_list *lst, char stack_name);
 
 #endif

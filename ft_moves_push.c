@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:53:47 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/21 18:04:23 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/23 00:02:17 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	ft_push(t_list **dst, t_list **src, char *move_name, int *command_counter)
 	write(1, move_name, 3);
 	write(1, "\n", 1);
 	(*command_counter)++;
+ft_print_list(&src, &dst, 'a');
+ft_print_list(&src, &dst, 'b');
 }
 
 /*
