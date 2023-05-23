@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:07:40 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/22 23:58:21 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/23 21:19:05 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,25 @@
 		int				value;
 		int				place;
 		int				index;
+		int				gap_to_top;
+		int				gap_to_bottom;
 		int				dist_to_right_place;
 		int				target_pos;
 		struct s_list	*next;
  }						t_list;
 
-//			library funcions
+//			Library functions
 long		ft_atol(const char *str);
 
-//			Lists 
+//			List creation 
  t_list		*ft_create_node(int num);
  void		ft_add_to_front(t_list **lst, int value);
  void		ft_add_to_back(t_list **lst, int value);
 
 //			List utilities
  int		ft_list_size(t_list *lst);
+ t_list		*ft_find_max_node(t_list **lst);
+ t_list		*ft_find_min_node(t_list **lst);
 
 //			Movements
  void		ft_push(t_list **dst, t_list **src, char *stack_name, int *command_counter);
@@ -53,6 +57,7 @@ long		ft_atol(const char *str);
 //			Feeding struct with data
  void		ft_assign_places(t_list **lst);
  void 		ft_assign_dist_to_right_place(t_list **lst);
+ void		ft_assign_gaps(t_list **lst);
 
 //			Sorting process
  int		ft_check_input(int argc, char **argv);

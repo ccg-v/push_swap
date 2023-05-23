@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:42:08 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/22 23:59:05 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/23 22:08:50 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,21 +78,10 @@ void	ft_split_stack_in_two(t_list **stack_a, t_list **stack_b, int *command_coun
 			ft_rotate(stack_a, "ra", command_counter);
 		i++;
 	}
+	ft_assign_gaps(stack_a);
+	ft_assign_gaps(stack_b);
 }
 
-
-/*	
-static void	ft_print_list(t_list *lst, char stack_name)
-{
-	printf("\n%c:\tValue\tIndex\tPlace\tDist\n", stack_name);
-	while (lst)
-	{
-		printf("\t%d\t%d\t%d\t%d\n", lst->value, lst->index, lst->place, lst->dist_to_right_place);
-		lst = lst->next;
-	}
-	printf("\n");
-}
-*/
 /*
 static int	get_target(t_list **a, int b_idx,int target_idx, int target_pos)
 {
@@ -138,18 +127,7 @@ void	get_target_position(t_list **a, t_list **b)
 	}
 }
 */
-/*
-static void	ft_print_list(t_list *lst, char stack_name)
-{
-	printf("%c: ", stack_name);
-	while (lst)
-	{
-		printf("%d ", lst->index);
-		lst = lst->next;
-	}
-	printf("\n");
-}
-*/
+
 /*
 static void	push_all_save_three(t_list **stack_a, t_list **stack_b, int *command_counter)
 {
@@ -192,6 +170,7 @@ printf("----------------------------------------\n");
 	}
 }
 */
+/*
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a = NULL;
@@ -213,22 +192,24 @@ int	main(int argc, char **argv)
 		ft_index_list(&stack_a);
 		ft_assign_places(&stack_a);
 		ft_assign_dist_to_right_place(&stack_a);
+		ft_assign_gaps(&stack_a);
 //get_target_position(&stack_a, &stack_b);
 ft_print_list(stack_a, 'a');
 ft_print_list(stack_b, 'b');
+		ft_split_stack_in_two(&stack_a, &stack_b, &command_counter);
+
 printf("----------------------------------------\n");
 //push_all_save_three(&stack_a, &stack_b, &command_counter);
-//ft_split_stack_in_two(&stack_a, &stack_b, &command_counter);
-		while (ft_is_sorted(stack_a) == 0)
-		{
-			ft_move_to_top_farthest(&stack_a, &command_counter);
-			if (!ft_is_sorted(stack_a))
-			{
-				ft_push(&stack_b, &stack_a, "pb", &command_counter);
-				if (!ft_is_sorted(stack_a))
-					ft_swap_both(&stack_b, &stack_a, &command_counter);
-			}
-		}
+//		while (ft_is_sor, ted(stack_a) == 0)
+//		{
+//			ft_move_to_top_farthest(&stack_a, &command_counter);
+//			if (!ft_is_sorted(stack_a))
+//			{
+//				ft_push(&stack_b, &stack_a, "pb", &command_counter);
+//				if (!ft_is_sorted(stack_a))
+//					ft_swap_both(&stack_b, &stack_a, &command_counter);
+//			}
+//		}
 ft_print_list(stack_a, 'a');
 ft_print_list(stack_b, 'b');
 printf("----------------------------------------\n");
@@ -239,4 +220,4 @@ printf("----------------------------------------\n");
 	}
 printf("Number of commands used: %d\n", command_counter);
 	return (0);
-}
+}*/

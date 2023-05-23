@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_index_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccarrace <ccarrace@student.42barcel>       +#+  +:+       +#+        */
+/*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:06:20 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/07 19:10:01 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:54:18 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ void ft_index_list(t_list **lst)
 	compare to 'min' will always become the new minimum.
 	We could also create an extra function to search for the maximum value
 	in the list, and use it to initialize the 'min' variable. But obviously,
-	the first solution is pretty much easier.
+	the first solution is pretty much smart.
 */
