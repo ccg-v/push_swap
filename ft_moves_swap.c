@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:53:47 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/23 00:00:08 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/25 23:12:56 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ void	ft_swap(t_list **stack, char *move_name, int *command_counter)
 	(*stack)->next = tmp;
 	if (strncmp(move_name, "ss", 3) != 0)
 	{
-		write(1, move_name, 3);
-		write(1, "\n", 1);
+//		write(1, move_name, 3);
+//		write(1, "\n", 1);
+//		ft_putstr_fd(move_name, 1);
+		printf("%s\n", move_name);
 		(*command_counter)++;
 	}
 	ft_assign_places(stack);
@@ -36,8 +38,9 @@ void	ft_swap_both(t_list **a, t_list **b, int *command_counter)
 {
 	ft_swap(a, "ss", command_counter);
 	ft_swap(b, "ss", command_counter);
-	write(1, "ss", 3);
-	write(1, "\n", 1);
+//	write(1, "ss\n", 3);
+//	ft_putstr_fd("ss", 1);
+	printf("ss\n");
 	(*command_counter)++;
 }
 

@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:42:08 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/23 22:08:50 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/25 23:05:10 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ ft_print_list(stack_b, 'b');
 
 printf("----------------------------------------\n");
 //push_all_save_three(&stack_a, &stack_b, &command_counter);
-//		while (ft_is_sor, ted(stack_a) == 0)
+//		while (ft_is_sorted(stack_a) == 0)
 //		{
 //			ft_move_to_top_farthest(&stack_a, &command_counter);
 //			if (!ft_is_sorted(stack_a))

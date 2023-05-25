@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_assign_gaps.c                                   :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 21:04:17 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/25 20:43:48 by ccarrace         ###   ########.fr       */
+/*   Created: 2022/06/06 15:48:21 by ccarrace          #+#    #+#             */
+/*   Updated: 2023/05/25 21:11:18 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_assign_gaps(t_list **stack)
+void	ft_putstr_fd(char *s, int fd)
 {
-	t_list  *current;
-	int	    stack_size;   
+	int	i;
 
-	current = *stack;
-    stack_size = ft_list_size(*stack);
-	while (current)
+	i = 0;
+	while (s[i] != '\0')
 	{
-		current->gap_to_top = current->place - 1;
-        current->gap_to_bottom = stack_size - current->place;
-		current = current->next;
+		write(fd, &s[i], 1);
+		i++;
 	}
+	write(fd, "\n", 1);
 }

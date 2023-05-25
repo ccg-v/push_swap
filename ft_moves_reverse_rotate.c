@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:53:47 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/21 18:02:23 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/25 23:12:24 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ void 	ft_reverse_rotate(t_list **stack, char *move_name, int *command_counter)
 	ft_assign_dist_to_right_place(stack);
 	if (strncmp(move_name, "rrr", 3) != 0)
 	{
-		write(1, move_name, 3);
-		write(1, "\n", 1);
+//		write(1, move_name, 3);
+//		write(1, "\n", 1);
+//		ft_putstr_fd(move_name, 1);
+		printf("%s\n", move_name);
 		(*command_counter)++;
 	}
 }
@@ -46,8 +48,9 @@ void	ft_reverse_rotate_both(t_list **stack_a, t_list **stack_b, int *command_cou
 {
 	ft_reverse_rotate(stack_a, "rrr", command_counter);
 	ft_reverse_rotate(stack_b, "rrr", command_counter);
-	write(1, "rrr", 3);
-	write(1, "\n", 1);
+//	write(1, "rrr\n", 4);
+//	ft_putstr_fd("rrr", 1);
+	printf("rrr\n");
 	(*command_counter)++;
 }
 

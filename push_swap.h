@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:07:40 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/23 21:19:05 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/25 21:09:44 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 
 //			Library functions
 long		ft_atol(const char *str);
+void		ft_putstr_fd(char *s, int fd);
 
 //			List creation 
  t_list		*ft_create_node(int num);
