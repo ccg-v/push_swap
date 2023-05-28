@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 12:27:40 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/21 21:51:05 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/27 23:55:15 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	ft_is_sorted(t_list *lst)
 			return (0);
 		tmp = tmp->next;
 	}
-	printf("SORTED!\n");
 	return (1);
 }
 
