@@ -6,7 +6,7 @@
 #    By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/07 19:25:44 by ccarrace          #+#    #+#              #
-#    Updated: 2023/05/25 21:09:16 by ccarrace         ###   ########.fr        #
+#    Updated: 2023/05/29 20:13:19 by ccarrace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRC_FILES =	ft_create_node.c \
 			ft_moves_rotate.c \
 			ft_moves_reverse_rotate.c \
 			ft_check_input.c \
-			ft_sort_three.c \
+			ft_sort_simple.c \
 			ft_sort_complex.c \
 			ft_atol.c \
 			ft_list_utilities.c \

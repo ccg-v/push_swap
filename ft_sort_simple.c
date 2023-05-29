@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 20:14:33 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/26 22:15:21 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/30 00:25:55 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,14 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	stack_b = NULL;
 	command_counter = 0;
+		
 	if (ft_check_input(argc, argv) == 1)
 	{
 		ft_initialize_stack(&stack_a, argc, argv);
-		if (argc < 100)
-		{
+		if (argc <= 6)
 			ft_sort_few(stack_a, stack_b, &command_counter);
-		}
+		else
+			ft_sort_complex();
 	}
 //	if (ft_check_input(argc, argv) == 1)
 //	{
@@ -119,8 +120,7 @@ int	main(int argc, char **argv)
 //		}	
 //		ft_sort_three(&stack_a, &command_counter);
 //		while(ft_list_size(stack_b) > 0)
-//			ft_push(&stack_a, &stack_b, "pa", &command_counter);
-//		ft_print_list(stack_a, 'A');
+//			ft_push(&stack_a, &stack_b, "pa", &command_counter);	
 printf("Number of commands used: %d\n", command_counter);
 	return (0);
 }

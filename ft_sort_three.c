@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 20:14:33 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/25 23:08:09 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/29 20:11:47 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void ft_simple_sort(t_list *stack, int *command_counter)
 }
 */
 
-
+/*
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a = NULL;
@@ -106,4 +106,4 @@ int	main(int argc, char **argv)
 	}
 printf("Number of commands used: %d\n", command_counter);
 	return (0);
-}
+}*/
