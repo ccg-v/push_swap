@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:07:40 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/25 21:09:44 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/30 19:42:52 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 		int				gap_to_top;
 		int				gap_to_bottom;
 		int				dist_to_right_place;
-		int				target_pos;
+		int				closest_upper;
 		struct s_list	*next;
  }						t_list;
 

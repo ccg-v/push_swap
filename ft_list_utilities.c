@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:31:22 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/23 21:20:38 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/30 20:04:41 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_print_list(t_list *lst, char stack_name)
 {
-	printf("\n%c:\tVALUE\tPlace\tIndex\tGapTop\tGapBot\n", stack_name);
+	printf("\n%c:\tVALUE\tPlace\tIndex\tUpper\tGapTop\tGapBot\n", stack_name);
 	while (lst)
 	{
-		printf("\t%d\t%d\t%d\t%d\t%d\n", lst->value, lst->place, lst->index, lst->gap_to_top, lst->gap_to_bottom);
+		printf("\t%d\t%d\t%d\t%d\t%d\t%d\n", lst->value, lst->place, lst->index, lst->closest_upper, lst->gap_to_top, lst->gap_to_bottom);
 		lst = lst->next;
 	}
 	printf("\n");

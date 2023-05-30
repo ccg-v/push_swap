@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:42:08 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/30 00:25:56 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/30 19:57:31 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ void	ft_split_stack_in_two(t_list **stack_a, t_list **stack_b, int *command_coun
 	ft_assign_gaps(stack_a);
 	ft_assign_gaps(stack_b);
 }
-
-
 
 /*
 static int	get_target(t_list **a, int b_idx,int target_idx, int target_pos)

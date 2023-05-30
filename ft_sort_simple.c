@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 20:14:33 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/30 00:25:55 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/30 23:19:21 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_sort_few(t_list *stack_a, t_list *stack_b, int *command_counter)
 		ft_push(&stack_a, &stack_b, "pa", command_counter);
 }
 
-void	ft_initialize_stack(t_list **stack_a, int argc, char **argv)
+void	ft_fill_stack(t_list **stack_a, int argc, char **argv)
 {
 	int	i;
 
@@ -83,6 +83,30 @@ void	ft_initialize_stack(t_list **stack_a, int argc, char **argv)
 		}
 		ft_assign_places(stack_a);
 		ft_index_list(stack_a);
+}
+
+void	ft_assign_closest_upper(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*a_node;
+	t_list	*b_node;
+	int	closest_upper;
+
+	b_node = *stack_b;
+	while (b_node)
+	{
+		closest_upper = INT_MAX;
+		a_node = *stack_a;
+		while(a_node)
+		{
+			if (a_node->index > b_node->index && a_node->index < closest_upper)
+				closest_upper = a_node->index;
+			a_node = a_node->next;
+		}
+		if (closest_upper == INT_MAX)
+			closest_upper = (ft_find_min_node(stack_a))->index;
+		b_node->closest_upper = closest_upper;
+		b_node = b_node->next;	
+	}
 }
 
 int	main(int argc, char **argv)
@@ -97,11 +121,23 @@ int	main(int argc, char **argv)
 		
 	if (ft_check_input(argc, argv) == 1)
 	{
-		ft_initialize_stack(&stack_a, argc, argv);
+		ft_fill_stack(&stack_a, argc, argv);
+ft_print_list(stack_a, 'A');
 		if (argc <= 6)
+		{
 			ft_sort_few(stack_a, stack_b, &command_counter);
+ft_print_list(stack_a, 'A');
+ft_print_list(stack_b, 'B');
+		}
 		else
-			ft_sort_complex();
+		{
+			while (ft_list_size(stack_a) > 3)
+				ft_push(&stack_b, &stack_a, "pb", &command_counter);
+			ft_sort_three(&stack_a, &command_counter);
+			ft_assign_closest_upper(&stack_a, &stack_b);
+		}
+ft_print_list(stack_a, 'A');
+ft_print_list(stack_b, 'B');
 	}
 //	if (ft_check_input(argc, argv) == 1)
 //	{
