@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:42:08 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/30 19:57:31 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/01 23:26:44 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,94 +82,94 @@ void	ft_split_stack_in_two(t_list **stack_a, t_list **stack_b, int *command_coun
 	ft_assign_gaps(stack_b);
 }
 
-/*
-static int	get_target(t_list **a, int b_idx,int target_idx, int target_pos)
+void	ft_assign_closest_upper(t_list **stack_a, t_list **stack_b)
 {
-	t_list	*tmp_a;
+	t_list	*a_node;
+	t_list	*b_node;
+	int		closest_upper;
+	t_list	*address;
 
-	tmp_a = *a;
-	while (tmp_a)
+	b_node = *stack_b;
+	while (b_node)
 	{
-		if (tmp_a->index > b_idx && tmp_a->index < target_idx)
+		closest_upper = INT_MAX;
+		a_node = *stack_a;
+//address = b_node;
+//printf("node %d address is %p\n", address->value, address);
+		while(a_node)
 		{
-			target_idx = tmp_a->index;
-			target_pos = tmp_a->place;
+			if (a_node->index > b_node->index && a_node->index < closest_upper)
+			{
+				closest_upper = a_node->index;
+				address = a_node;
+			}
+			a_node = a_node->next;
 		}
-		tmp_a = tmp_a->next;
-	}
-	if (target_idx != INT_MAX)
-		return (target_pos);
-	tmp_a = *a;
-	while (tmp_a)
-	{
-		if (tmp_a->index < target_idx)
+		if (closest_upper == INT_MAX)
 		{
-			target_idx = tmp_a->index;
-			target_pos = tmp_a->place;
+			b_node->closest_upper = ft_find_min_node(stack_a)->index;
+			address = ft_find_min_node(stack_a);
 		}
-		tmp_a = tmp_a->next;
+		b_node->closest_upper = closest_upper;
+		b_node->address = address;
+		b_node = b_node->next;	
 	}
-	return (target_pos);
 }
 
-void	get_target_position(t_list **a, t_list **b)
+/*
+void	ft_assign_closest_upper(t_list **stack_a, t_list **stack_b)
 {
-	t_list	*tmp_b;
-	int		target_pos;
+	t_list	*a_node;
+	t_list	*b_node;
+	int	closest_upper;
 
-	tmp_b = *b;
-	target_pos = 0;
-	while (tmp_b)
+	b_node = *stack_b;
+	while (b_node)
 	{
-		target_pos = get_target(a, tmp_b->index, INT_MAX, target_pos);
-		tmp_b->target_pos = target_pos;
-		tmp_b = tmp_b->next;
+		closest_upper = INT_MAX;
+		a_node = *stack_a;
+		while(a_node)
+		{
+			if (a_node->index > b_node->index && a_node->index < closest_upper)
+				closest_upper = a_node->index;
+			a_node = a_node->next;
+		}
+		if (closest_upper == INT_MAX)
+			closest_upper = (ft_find_min_node(stack_a))->index;
+		b_node->closest_upper = closest_upper;
+		b_node = b_node->next;	
 	}
+}
+
+void	ft_choose_best_push(t_list **stack_a, t_list **stack_b)
+{
+
 }
 */
 
-/*
-static void	push_all_save_three(t_list **stack_a, t_list **stack_b, int *command_counter)
+void	ft_assign_gaps(t_list **stack)
 {
-	int	stack_size;
-	int	pushed;
-	int	i;
+	t_list  *current;
+	int	    stack_size;  
+	int		gap_to_top; 
 
-	stack_size = ft_list_size(*stack_a);
-	pushed = 0;
-	i = 0;
-	while (stack_size > 6 && i < stack_size && pushed < stack_size / 2)
+	current = *stack;
+	gap_to_top = 0;
+    stack_size = ft_list_size(*stack);
+	while (current && (current->place <= (stack_size / 2)))
 	{
-		if ((*stack_a)->index <= stack_size / 2)
-		{
-			ft_push(stack_b, stack_a, "pb", command_counter);
-//printf("----------------------------------------\n");
-ft_print_list(*stack_a, 'a');
-ft_print_list(*stack_b, 'b');
-printf("----------------------------------------\n");
-			pushed++;
-		}
-		else
-		{
-			ft_rotate(stack_a, "ra", command_counter);
-//printf("----------------------------------------\n");
-ft_print_list(*stack_a, 'a');
-ft_print_list(*stack_b, 'b');
-printf("----------------------------------------\n");
-		}
-		i++;
+		current->gap_to_top = gap_to_top++;
+		current = current->next;
 	}
-	while (stack_size - pushed > 3)
+	if (stack_size % 2 == 0)
+		gap_to_top--;
+	while (current && (current->place > (stack_size / 2)))
 	{
-		ft_push(stack_b, stack_a, "pb", command_counter);
-//printf("----------------------------------------\n");
-ft_print_list(*stack_a, 'a');
-ft_print_list(*stack_b, 'b');
-printf("----------------------------------------\n");
-		pushed++;
+		current->gap_to_top = (--gap_to_top) * -1;
+		current = current->next;
 	}
 }
-*/
+
 /*
 int	main(int argc, char **argv)
 {

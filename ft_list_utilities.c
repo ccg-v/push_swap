@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:31:22 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/30 20:04:41 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/01 23:53:47 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,55 @@
 
 void	ft_print_list(t_list *lst, char stack_name)
 {
-	printf("\n%c:\tVALUE\tPlace\tIndex\tUpper\tGapTop\tGapBot\n", stack_name);
+	if (lst->address != NULL)
+	{
+		printf("\n%c::\tVALUE\tPlace\tIndex\tGapTop\tUpper\n", stack_name);
+		while (lst)
+		{
+			printf("\t%d\t%d\t%d\t%d\t%d\n", lst->value, lst->place, lst->index, lst->gap_to_top, lst->address->index);
+			lst = lst->next;
+		}
+		printf("\n");
+	}
+	else
+	{
+		printf("\n%c::\tVALUE\tPlace\tIndex\tGapTop\n", stack_name);
+		while (lst)
+		{
+			printf("\t%d\t%d\t%d\t%d\n", lst->value, lst->place, lst->index, lst->gap_to_top);
+			lst = lst->next;
+		}
+		printf("\n");		
+	}
+}
+/*
+void	ft_print_list(t_list *lst, char stack_name)
+{
 	while (lst)
 	{
-		printf("\t%d\t%d\t%d\t%d\t%d\t%d\n", lst->value, lst->place, lst->index, lst->closest_upper, lst->gap_to_top, lst->gap_to_bottom);
+		printf("The closest upper of %d in stack %c is ", lst->index, stack_name);
+		if (lst->address != NULL)
+			printf("%d\n", lst->address->index);
+		else
+			printf("not assigned\n");
 		lst = lst->next;
 	}
 	printf("\n");
 }
+*/
+/*
+void	ft_print_list(t_list *lst, char stack_name)
+{
+	printf("\n%c::\tVALUE\tPlace\tIndex\tGapTop\tUpper\n", stack_name);
+	while (lst)
+	{
+		printf("\t%d\t%d\t%d\t%d\t%p\n", lst->value, lst->place, lst->index, lst->gap_to_top, lst->address);
+//		printf("Address of index %d is %p\n", lst->index, lst->address);
+		lst = lst->next;
+	}
+	printf("\n");
+}
+*/
 
 t_list	*ft_find_max_node(t_list **lst)
 {

@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 20:14:33 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/29 20:11:47 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/05/31 22:19:31 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	ft_send_minimum_index_to_top(t_list **stack, int *command_counter)
 
 	min_node = ft_find_min_node(stack);
 	stack_len = ft_list_size(*stack) + 1;
-	distance_to_top = min_node->place - 1;
+//	distance_to_top = min_node->place - 1;
+	distance_to_top = min_node->place;
 	distance_to_bottom = stack_len - min_node->place;
 	if(distance_to_top <= distance_to_bottom)
 	{
