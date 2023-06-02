@@ -6,7 +6,7 @@
 #    By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/07 19:25:44 by ccarrace          #+#    #+#              #
-#    Updated: 2023/05/31 22:58:36 by ccarrace         ###   ########.fr        #
+#    Updated: 2023/06/02 20:09:36 by ccarrace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ SRC_FILES =	ft_create_node.c \
 			ft_list_size.c \
 			ft_index_list.c \
 			ft_assign_places.c \
-			ft_assign_dist_to_right_place.c \
 			ft_is_sorted.c \
 			ft_moves_push.c \
 			ft_moves_swap.c \

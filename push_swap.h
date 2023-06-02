@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:07:40 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/01 22:39:07 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/03 00:40:23 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@
 		int				index;
 		int				gap_to_top;
 		int				gap_to_bottom;
-		int				dist_to_right_place;
+//		int				dist_to_right_place;
 		int				closest_upper;
-		struct s_list	*address;
+		struct s_list	*closest_upper_address;
 		struct s_list	*next;
  }						t_list;
 
@@ -59,7 +59,7 @@ void		ft_putstr_fd(char *s, int fd);
 //			Filling struct with data
  void		ft_fill_stack(t_list **stack_a, int argc, char **argv);
  void		ft_assign_places(t_list **lst);
- void 		ft_assign_dist_to_right_place(t_list **lst);
+// void 		ft_assign_dist_to_right_place(t_list **lst);
  void		ft_assign_gaps(t_list **lst);
 
 //			Sorting process
@@ -72,6 +72,8 @@ void		ft_putstr_fd(char *s, int fd);
  void		ft_index_list(t_list **lst);
  int		ft_is_sorted(t_list *lst);
  void		ft_assign_closest_upper(t_list **stack_a, t_list **stack_b);
+ t_list		*ft_find_best_push(t_list **stack_b);
+ void		ft_choose_single_commands(t_list **stack_a, t_list **stack_b, t_list *b_best_push, int *command_counter);
 
  void		ft_print_list(t_list *lst, char stack_name);
 

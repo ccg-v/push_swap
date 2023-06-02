@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:53:47 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/25 23:12:03 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/02 23:35:28 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,12 @@ void	ft_push(t_list **dst, t_list **src, char *move_name, int *command_counter)
 		*dst = tmp;
 	}
 	ft_assign_places(src);
-	ft_assign_dist_to_right_place(src);
+//	ft_assign_dist_to_right_place(src);
 	ft_assign_places(dst);
-	ft_assign_dist_to_right_place(dst);
+//	ft_assign_dist_to_right_place(dst);
+//	ft_assign_closest_upper(dst, src);
+	ft_assign_gaps(dst);
+	ft_assign_gaps(src);
 //	ft_putstr_fd(move_name, 1);
 	printf("%s\n", move_name);
 	(*command_counter)++; 

@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:53:47 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/25 23:12:56 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/02 20:11:24 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_swap(t_list **stack, char *move_name, int *command_counter)
 		(*command_counter)++;
 	}
 	ft_assign_places(stack);
-	ft_assign_dist_to_right_place(stack);
+//	ft_assign_dist_to_right_place(stack);
 }
 
 void	ft_swap_both(t_list **a, t_list **b, int *command_counter)

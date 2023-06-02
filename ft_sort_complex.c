@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:42:08 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/01 23:26:44 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/03 01:00:17 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,134 +18,6 @@ int	ft_abs(int num)
 		return (num * -1);
 	return (num);
 }
-
-t_list	*ft_find_farthest_node(t_list **lst)
-{
-	t_list	*current;
-	t_list	*farthest;
-	int		stack_size;
-	int		i;
-
-	stack_size = ft_list_size(*lst);
-	current = *lst;
-	farthest = current;
-	i = 0;
-	while (i < stack_size)
-	{
-		if (ft_abs(current->dist_to_right_place) > ft_abs(farthest->dist_to_right_place))
-			farthest = current;
-		else if (ft_abs(current->dist_to_right_place) == ft_abs(farthest->dist_to_right_place) && current->dist_to_right_place < 0)
-		{
-			if (current->dist_to_right_place > farthest->dist_to_right_place)
-				farthest = current;
-		}
-		current = current->next;
-		i++;
-	}
-	return(farthest);
-}
-
-void	ft_move_to_top_farthest(t_list **stack, int *command_counter)
-{
-	t_list	*farthest;
-	int		stack_size;
-	
-	stack_size = ft_list_size(*stack);
-	farthest = ft_find_farthest_node(stack);
-	while (farthest->place != 1)
-	{
-		if (farthest->place > stack_size / 2)
-			ft_reverse_rotate(stack, "rra", command_counter);
-		else if (farthest->place <= (stack_size / 2))
-			ft_rotate(stack, "ra", command_counter);
-	}
-}
-
-void	ft_split_stack_in_two(t_list **stack_a, t_list **stack_b, int *command_counter)
-{
-	t_list	**current_node;
-	int		stack_size;
-	int		i;
-
-	current_node = stack_a;
-	stack_size = ft_list_size(*stack_a);
-	i = 0;
-	while(i < stack_size)
-	{
-		if((*current_node)->index <= (stack_size / 2))
-			ft_push(stack_b, stack_a, "pb", command_counter);
-		else
-			ft_rotate(stack_a, "ra", command_counter);
-		i++;
-	}
-	ft_assign_gaps(stack_a);
-	ft_assign_gaps(stack_b);
-}
-
-void	ft_assign_closest_upper(t_list **stack_a, t_list **stack_b)
-{
-	t_list	*a_node;
-	t_list	*b_node;
-	int		closest_upper;
-	t_list	*address;
-
-	b_node = *stack_b;
-	while (b_node)
-	{
-		closest_upper = INT_MAX;
-		a_node = *stack_a;
-//address = b_node;
-//printf("node %d address is %p\n", address->value, address);
-		while(a_node)
-		{
-			if (a_node->index > b_node->index && a_node->index < closest_upper)
-			{
-				closest_upper = a_node->index;
-				address = a_node;
-			}
-			a_node = a_node->next;
-		}
-		if (closest_upper == INT_MAX)
-		{
-			b_node->closest_upper = ft_find_min_node(stack_a)->index;
-			address = ft_find_min_node(stack_a);
-		}
-		b_node->closest_upper = closest_upper;
-		b_node->address = address;
-		b_node = b_node->next;	
-	}
-}
-
-/*
-void	ft_assign_closest_upper(t_list **stack_a, t_list **stack_b)
-{
-	t_list	*a_node;
-	t_list	*b_node;
-	int	closest_upper;
-
-	b_node = *stack_b;
-	while (b_node)
-	{
-		closest_upper = INT_MAX;
-		a_node = *stack_a;
-		while(a_node)
-		{
-			if (a_node->index > b_node->index && a_node->index < closest_upper)
-				closest_upper = a_node->index;
-			a_node = a_node->next;
-		}
-		if (closest_upper == INT_MAX)
-			closest_upper = (ft_find_min_node(stack_a))->index;
-		b_node->closest_upper = closest_upper;
-		b_node = b_node->next;	
-	}
-}
-
-void	ft_choose_best_push(t_list **stack_a, t_list **stack_b)
-{
-
-}
-*/
 
 void	ft_assign_gaps(t_list **stack)
 {
@@ -168,6 +40,121 @@ void	ft_assign_gaps(t_list **stack)
 		current->gap_to_top = (--gap_to_top) * -1;
 		current = current->next;
 	}
+}
+
+void	ft_assign_closest_upper(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*a_node;
+	t_list	*b_node;
+	int		closest_upper;
+	t_list	*closest_upper_address;
+
+	b_node = *stack_b;
+	while (b_node)
+	{
+		closest_upper = INT_MAX;
+		a_node = *stack_a;
+		while(a_node)
+		{
+			if (a_node->index > b_node->index && a_node->index < closest_upper)
+			{
+				closest_upper = a_node->index;
+				closest_upper_address = a_node;
+			}
+			a_node = a_node->next;
+		}
+		if (closest_upper == INT_MAX)
+		{
+			b_node->closest_upper = ft_find_min_node(stack_a)->index;
+			closest_upper_address = ft_find_min_node(stack_a);
+		}
+		b_node->closest_upper = closest_upper;
+		b_node->closest_upper_address = closest_upper_address;
+		b_node = b_node->next;	
+	}
+}
+
+t_list	*ft_find_best_push(t_list **stack_b)
+{
+	t_list *b_node;
+	int	lowest_sum_of_gaps;
+	int	current_sum_of_gaps;
+	t_list	*best_push_address;
+
+	b_node = *stack_b;
+	lowest_sum_of_gaps = INT_MAX;
+	while (b_node) 
+	{
+		current_sum_of_gaps = (ft_abs(b_node->gap_to_top) + ft_abs(b_node->closest_upper_address->gap_to_top));
+		if (current_sum_of_gaps < lowest_sum_of_gaps)
+		{
+			lowest_sum_of_gaps = current_sum_of_gaps;
+			best_push_address = b_node;
+		}
+		if (current_sum_of_gaps == 0 || current_sum_of_gaps == ft_abs(1))
+			return(best_push_address);
+		else
+			b_node = b_node->next;
+	}
+	return(best_push_address);
+}
+
+void	ft_choose_single_commands(t_list **stack_a, t_list **stack_b, t_list *b_best_push, int *command_counter)
+{
+	t_list	*a_best_push;
+	int		i;
+
+	i = 0;
+	a_best_push = b_best_push->closest_upper_address;
+	if (a_best_push->gap_to_top == 0 && b_best_push->gap_to_top == 0)
+	{
+		ft_push(stack_b, stack_a, "pa", command_counter);
+		return ;
+	}
+	else if (a_best_push->gap_to_top == 0 && b_best_push->gap_to_top > 0)
+	{
+		printf("----- case 1 -----\n");	
+		while (++i <= ft_abs(b_best_push->gap_to_top))
+			ft_rotate(stack_b, "rb", command_counter);
+	}
+	else if (a_best_push->gap_to_top == 0 && b_best_push->gap_to_top < 0)
+	{
+		printf("----- case 2 -----\n");
+		while (++i <= ft_abs(b_best_push->gap_to_top))
+			ft_reverse_rotate(stack_b, "rrb", command_counter);
+	}
+	else if (a_best_push->gap_to_top > 0 && b_best_push->gap_to_top == 0)
+	{
+		printf("----- case 3 -----\n");
+		while (++i <= ft_abs(a_best_push->gap_to_top))
+			ft_rotate(stack_a, "ra", command_counter);
+	}
+	else if (a_best_push->gap_to_top < 0 && b_best_push->gap_to_top == 0)
+	{
+		printf("----- case 4 -----\n");
+		while (++i <= ft_abs(a_best_push->gap_to_top))
+			ft_reverse_rotate(stack_a, "rra", command_counter);
+	}
+	else if (a_best_push->gap_to_top > 0 && b_best_push->gap_to_top < 0)
+	{
+		printf("----- case 5 -----\n");	
+		while (++i <= ft_abs(a_best_push->gap_to_top))
+			ft_rotate(stack_a, "ra", command_counter);
+		while (++i <= ft_abs(b_best_push->gap_to_top))
+			ft_reverse_rotate(stack_b, "rrb", command_counter);	
+						
+	}
+	else if (a_best_push->gap_to_top < 0 && b_best_push->gap_to_top > 0)
+	{
+		printf("----- case 6 -----\n");	
+		while (++i <= ft_abs(b_best_push->gap_to_top))
+			ft_rotate(stack_b, "rb", command_counter);
+		while (++i <= ft_abs(a_best_push->gap_to_top))
+			ft_reverse_rotate(stack_a, "rra", command_counter);
+					
+	}
+	printf("----- final push -----\n");	
+	ft_push(stack_b, stack_a, "pa", command_counter);		
 }
 
 /*
