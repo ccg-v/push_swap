@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 20:14:33 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/04 23:24:18 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/05 11:52:04 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	ft_fill_stack(t_list **stack_a, int argc, char **argv)
 
 	i = 1;
 	while (i < argc)
-		{
-			ft_add_to_back(stack_a, atoi(argv[i]));
-			i++;
-		}
-		ft_assign_places(stack_a);
-		ft_index_list(stack_a);
-		ft_assign_gaps(stack_a);
+	{
+		ft_add_to_back(stack_a, atoi(argv[i]));
+		i++;
+	}
+	ft_assign_places(stack_a);
+	ft_index_list(stack_a);
+	ft_assign_gaps(stack_a);
 }
 
 void	ft_sort_three(t_list **stack, int *command_counter)

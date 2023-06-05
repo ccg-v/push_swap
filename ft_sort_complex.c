@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:42:08 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/05 02:53:44 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/06 01:23:11 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void	ft_assign_gaps_a(t_list **stack)
 	}
 }
 */
+
 void	ft_assign_closest_upper(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*a_node;
@@ -109,6 +110,7 @@ void	ft_assign_closest_upper(t_list **stack_a, t_list **stack_b)
 	int		closest_upper;
 	t_list	*closest_upper_address;
 
+	closest_upper_address = NULL;
 	b_node = *stack_b;
 	while (b_node)
 	{
@@ -127,6 +129,7 @@ void	ft_assign_closest_upper(t_list **stack_a, t_list **stack_b)
 		{
 			b_node->closest_upper = ft_find_min_node(stack_a)->index;
 			closest_upper_address = ft_find_min_node(stack_a);
+			a_node->closest_upper = b_node->closest_upper;
 		}
 		b_node->closest_upper = closest_upper;
 		b_node->closest_upper_address = closest_upper_address;
@@ -177,6 +180,8 @@ void	ft_choose_single_commands(t_list **stack_a, t_list **stack_b, t_list *b_bes
 		{
 			ft_rotate(stack_b, "rb", command_counter);
 			i++;
+printf("\tA_best = %d\tB_best = %d\n", b_best_push->closest_upper_address->index, b_best_push->index);
+printf("\tA_gap = %d\tB_gap = %d\ti = %d\n", b_best_push->closest_upper_address->gap_to_top, b_best_push->gap_to_top, i);
 		}
 	}
 	else if (a_best_push->gap_to_top == 0 && b_best_push->gap_to_top < 0)
@@ -186,6 +191,8 @@ void	ft_choose_single_commands(t_list **stack_a, t_list **stack_b, t_list *b_bes
 			ft_reverse_rotate(stack_b, "rrb", command_counter);
 			i++;
 		}
+printf("\tA_best = %d\tB_best = %d\n", b_best_push->closest_upper_address->index, b_best_push->index);
+printf("\tA_gap = %d\tB_gap = %d\ti = %d\n", b_best_push->closest_upper_address->gap_to_top, b_best_push->gap_to_top, i);
 	}
 	else if (a_best_push->gap_to_top > 0 && b_best_push->gap_to_top == 0)
 	{
@@ -194,6 +201,8 @@ void	ft_choose_single_commands(t_list **stack_a, t_list **stack_b, t_list *b_bes
 			ft_rotate(stack_a, "ra", command_counter);
 			i++;
 		}
+printf("\tA_best = %d\tB_best = %d\n", b_best_push->closest_upper_address->index, b_best_push->index);
+printf("\tA_gap = %d\tB_gap = %d\ti = %d\n", b_best_push->closest_upper_address->gap_to_top, b_best_push->gap_to_top, i);
 	}
 	else if (a_best_push->gap_to_top < 0 && b_best_push->gap_to_top == 0)
 	{
@@ -217,6 +226,8 @@ printf("\tA_gap = %d\tB_gap = %d\ti = %d\n", b_best_push->closest_upper_address-
 			ft_reverse_rotate(stack_b, "rrb", command_counter);
 			i++;
 		}					
+printf("\tA_best = %d\tB_best = %d\n", b_best_push->closest_upper_address->index, b_best_push->index);
+printf("\tA_gap = %d\tB_gap = %d\ti = %d\n", b_best_push->closest_upper_address->gap_to_top, b_best_push->gap_to_top, i);
 	}
 	else if (a_best_push->gap_to_top < 0 && b_best_push->gap_to_top > 0)
 	{
@@ -230,6 +241,8 @@ printf("\tA_gap = %d\tB_gap = %d\ti = %d\n", b_best_push->closest_upper_address-
 			ft_reverse_rotate(stack_a, "rra", command_counter);
 			i++;
 		}
+printf("\tA_best = %d\tB_best = %d\n", b_best_push->closest_upper_address->index, b_best_push->index);
+printf("\tA_gap = %d\tB_gap = %d\ti = %d\n", b_best_push->closest_upper_address->gap_to_top, b_best_push->gap_to_top, i);
 	}
 	else if (a_best_push->gap_to_top > 0 && b_best_push->gap_to_top > 0)	
 	{
@@ -265,6 +278,8 @@ printf("\tA_gap = %d\tB_gap = %d\ti = %d\n", b_best_push->closest_upper_address-
 				ft_rotate_both(stack_a, stack_b, command_counter);
 				i++;
 			}
+printf("\tA_best = %d\tB_best = %d\n", b_best_push->closest_upper_address->index, b_best_push->index);
+printf("\tA_gap = %d\tB_gap = %d\ti = %d\n", b_best_push->closest_upper_address->gap_to_top, b_best_push->gap_to_top, i);
 	}
 	else if (a_best_push->gap_to_top < 0 && b_best_push->gap_to_top < 0)
 	{
@@ -300,8 +315,12 @@ printf("\tA_gap = %d\tB_gap = %d\ti = %d\n", b_best_push->closest_upper_address-
 				ft_reverse_rotate_both(stack_a, stack_b, command_counter);
 				i++;
 			}
+printf("\tA_best = %d\tB_best = %d\n", b_best_push->closest_upper_address->index, b_best_push->index);
+printf("\tA_gap = %d\tB_gap = %d\ti = %d\n", b_best_push->closest_upper_address->gap_to_top, b_best_push->gap_to_top, i);
 	}
-	ft_push(stack_a, stack_b, "pa", command_counter);		
+	ft_push(stack_a, stack_b, "pa", command_counter);
+printf("\tA_best = %d\tB_best = %d\n", b_best_push->closest_upper_address->index, b_best_push->index);
+printf("\tA_gap = %d\tB_gap = %d\ti = %d\n", b_best_push->closest_upper_address->gap_to_top, b_best_push->gap_to_top, i);		
 }
 
 /*

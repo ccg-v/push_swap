@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:53:47 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/04 23:08:31 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/06 01:36:58 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ void	ft_push(t_list **dst, t_list **src, char *move_name, int *command_counter)
 		*src = (*src)->next;
 		tmp->next = *dst;
 		*dst = tmp;
+tmp->closest_upper = 0;
 	}
 	ft_assign_places(src);
 	ft_assign_places(dst);
 	ft_assign_gaps(dst);
 	ft_assign_gaps(src);
-	ft_assign_closest_upper(dst, src);
+//	ft_assign_closest_upper(src, dst); --> causes SEGFAULT
 //	ft_putstr_fd(move_name, 1);
 	printf("%s\n", move_name);
 	(*command_counter)++; 
