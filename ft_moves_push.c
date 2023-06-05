@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:53:47 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/02 23:35:28 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:08:31 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,16 @@ void	ft_push(t_list **dst, t_list **src, char *move_name, int *command_counter)
 		*dst = tmp;
 	}
 	ft_assign_places(src);
-//	ft_assign_dist_to_right_place(src);
 	ft_assign_places(dst);
-//	ft_assign_dist_to_right_place(dst);
-//	ft_assign_closest_upper(dst, src);
 	ft_assign_gaps(dst);
 	ft_assign_gaps(src);
+	ft_assign_closest_upper(dst, src);
 //	ft_putstr_fd(move_name, 1);
 	printf("%s\n", move_name);
 	(*command_counter)++; 
 }
-
 /*
-void	ft_print_list(t_list *lst)
+static void	ft_print_lst(t_list *lst)
 {
 	while (lst)
 	{
@@ -58,6 +55,7 @@ int	main(void)
 	int		b_second;
 	int		b_third;
 	int		b_last;
+	int 	command_counter = 0;
 
 	a_first = 1;
 	a_second = 2;
@@ -71,7 +69,7 @@ int	main(void)
 	stack_a->next = ft_create_node(a_second);
 	stack_a->next->next = ft_create_node(a_third);
 	stack_a->next->next->next = ft_create_node(a_last);
-	ft_print_list(stack_a);
+	ft_print_lst(stack_a);
 	ft_add_to_back(&stack_b, b_first);
 	ft_add_to_back(&stack_b, b_second);
 	ft_add_to_back(&stack_b, b_third);
@@ -79,13 +77,14 @@ int	main(void)
 	stack_b->next = ft_create_node(b_second);
 	stack_b->next->next = ft_create_node(b_third);
 	stack_b->next->next->next = ft_create_node(b_last);
-	ft_print_list(stack_b);
-	ft_push(&stack_a, &stack_b, "pa");
-	ft_print_list(stack_a);
-	ft_print_list(stack_b);
-	ft_push(&stack_b, &stack_a, "pb");
-	ft_print_list(stack_a);
-	ft_print_list(stack_b);
+	ft_print_lst(stack_b);
+	ft_push(&stack_a, &stack_b, "pa", &command_counter);
+	ft_print_lst(stack_a);
+	ft_print_lst(stack_b);
+	ft_push(&stack_b, &stack_a, "pb", &command_counter);
+	ft_print_lst(stack_a);
+	ft_print_lst(stack_b);
 	return (0);
-}*/
+}
+*/
 

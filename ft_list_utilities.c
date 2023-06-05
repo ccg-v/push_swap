@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:31:22 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/02 20:28:47 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/05 02:01:38 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	ft_print_list(t_list *lst, char stack_name)
 	while (lst)
 	{
 		printf("The closest upper of %d in stack %c is ", lst->index, stack_name);
-		if (lst->address != NULL)
-			printf("%d\n", lst->address->index);
+		if (lst->closest_upper_address != NULL)
+			printf("%d\n", lst->closest_upper_address->index);
 		else
 			printf("not assigned\n");
 		lst = lst->next;
@@ -53,11 +53,10 @@ void	ft_print_list(t_list *lst, char stack_name)
 /*
 void	ft_print_list(t_list *lst, char stack_name)
 {
-	printf("\n%c::\tVALUE\tPlace\tIndex\tGapTop\tUpper\n", stack_name);
+	printf("\n%c::\tVALUE\tPlace\tIndex\tGapTop\n", stack_name);
 	while (lst)
 	{
-		printf("\t%d\t%d\t%d\t%d\t%p\n", lst->value, lst->place, lst->index, lst->gap_to_top, lst->address);
-//		printf("Address of index %d is %p\n", lst->index, lst->address);
+		printf("\t%d\t%d\t%d\t%d\n", lst->value, lst->place, lst->index, lst->gap_to_top);
 		lst = lst->next;
 	}
 	printf("\n");

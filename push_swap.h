@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:07:40 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/03 00:40:23 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:23:29 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void		ft_putstr_fd(char *s, int fd);
 //			Sorting process
  int		ft_check_input(int argc, char **argv);
  void		ft_sort_three(t_list **stack, int *command_counter);
- void		ft_sort_few(t_list *stack_a, t_list *stack_b, int *command_counter);
+ void		ft_sort_few(t_list **stack_a, t_list **stack_b, int *command_counter);
  void		ft_sort_complex(t_list **stack_a, t_list **stack_b, int *command_counter);
 
 //			Sort utilities
@@ -73,6 +73,7 @@ void		ft_putstr_fd(char *s, int fd);
  int		ft_is_sorted(t_list *lst);
  void		ft_assign_closest_upper(t_list **stack_a, t_list **stack_b);
  t_list		*ft_find_best_push(t_list **stack_b);
+ void		ft_send_minimum_index_to_top(t_list **stack, int *command_counter);
  void		ft_choose_single_commands(t_list **stack_a, t_list **stack_b, t_list *b_best_push, int *command_counter);
 
  void		ft_print_list(t_list *lst, char stack_name);

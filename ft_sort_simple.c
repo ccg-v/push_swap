@@ -6,13 +6,28 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 20:14:33 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/31 22:16:06 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:24:18 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
 #include <string.h>
+
+void	ft_fill_stack(t_list **stack_a, int argc, char **argv)
+{
+	int	i;
+
+	i = 1;
+	while (i < argc)
+		{
+			ft_add_to_back(stack_a, atoi(argv[i]));
+			i++;
+		}
+		ft_assign_places(stack_a);
+		ft_index_list(stack_a);
+		ft_assign_gaps(stack_a);
+}
 
 void	ft_sort_three(t_list **stack, int *command_counter)
 {
@@ -60,32 +75,17 @@ void	ft_send_minimum_index_to_top(t_list **stack, int *command_counter)
 	}
 }
 
-void	ft_sort_few(t_list *stack_a, t_list *stack_b, int *command_counter)
+void	ft_sort_few(t_list **stack_a, t_list **stack_b, int *command_counter)
 {
-	while(ft_list_size(stack_a) > 3)
+	while(ft_list_size(*stack_a) > 3)
 	{
-		ft_send_minimum_index_to_top(&stack_a, command_counter);
-		ft_push(&stack_b, &stack_a, "pb", command_counter);
+		ft_send_minimum_index_to_top(stack_a, command_counter);
+		ft_push(stack_b, stack_a, "pb", command_counter);
 	}
-	ft_sort_three(&stack_a, command_counter);
-	while(ft_list_size(stack_b)>0)
-		ft_push(&stack_a, &stack_b, "pa", command_counter);
+	ft_sort_three(stack_a, command_counter);
+	while(ft_list_size(*stack_b)>0)
+		ft_push(stack_a, stack_b, "pa", command_counter);
 }
-
-void	ft_fill_stack(t_list **stack_a, int argc, char **argv)
-{
-	int	i;
-
-	i = 1;
-	while (i < argc)
-		{
-			ft_add_to_back(stack_a, atoi(argv[i]));
-			i++;
-		}
-		ft_assign_places(stack_a);
-		ft_index_list(stack_a);
-}
-
 
 /*
 int	main(int argc, char **argv)
