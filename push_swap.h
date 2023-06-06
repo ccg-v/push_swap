@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:07:40 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/06 01:10:37 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/07 00:45:00 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@
 		int				value;
 		int				place;
 		int				index;
-		int				gap_to_top;
-		int				gap_to_bottom;
-//		int				dist_to_right_place;
 		int				closest_upper;
-		struct s_list	*closest_upper_address;
+		int				a_gap_to_top;
+		int				b_gap_to_top;
+	
 		struct s_list	*next;
  }						t_list;
 
@@ -56,11 +55,12 @@ void		ft_putstr_fd(char *s, int fd);
  void		ft_reverse_rotate(t_list **stack, char *move_name, int *command_counter);
  void		ft_reverse_rotate_both(t_list **a, t_list **b, int *command_counter);
 
-//			Filling struct with data
- void		ft_fill_stack(t_list **stack_a, int argc, char **argv);
+//			Creating stack, filling stack and assigning values to struct variables
+ void		ft_create_and_fill_stack(t_list **stack_a, int argc, char **argv);
  void		ft_assign_places(t_list **lst);
-// void 		ft_assign_dist_to_right_place(t_list **lst);
- void		ft_assign_gaps(t_list **lst);
+ void		ft_assign_indexes(t_list **lst);
+ void		ft_assign_gaps(t_list **stack_a, t_list **stack_b);
+ void		ft_set_assignments(t_list **stack_a, t_list **stack_b);
 
 //			Sorting process
  int		ft_check_input(int argc, char **argv);
@@ -69,10 +69,9 @@ void		ft_putstr_fd(char *s, int fd);
  void		ft_sort_complex(t_list **stack_a, t_list **stack_b, int *command_counter);
 
 //			Sort utilities
- void		ft_index_list(t_list **lst);
  int		ft_is_sorted(t_list *lst);
  void		ft_assign_closest_upper(t_list **stack_a, t_list **stack_b);
- t_list		*ft_find_best_push(t_list **stack_b);
+ void		ft_find_best_pushes(t_list **stack_a, t_list **stack_b);
  void		ft_send_minimum_index_to_top(t_list **stack, int *command_counter);
  void		ft_choose_single_commands(t_list **stack_a, t_list **stack_b, t_list *b_best_push, int *command_counter);
 

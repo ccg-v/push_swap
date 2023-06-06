@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:42:08 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/06 01:23:11 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/07 00:01:21 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	ft_abs(int num)
 		return (num * -1);
 	return (num);
 }
-
+/*
 void	ft_assign_gaps(t_list **stack)
 {
 	t_list  *current;
 	int	    stack_size;  
-	int		gap_to_top; 
+	int		gap_to_top; 	
 
 	current = *stack;
 	gap_to_top = 0;
@@ -41,7 +41,7 @@ void	ft_assign_gaps(t_list **stack)
 		current = current->next;
 	}
 }
-
+*/
 // No hay simetria, empieza en 0 y termina en -1 porque el ultimo
 // elemento necesita una rotacion inversa para colocarse arriba y 
 // poder moverlo a B.
@@ -103,6 +103,7 @@ void	ft_assign_gaps_a(t_list **stack)
 }
 */
 
+/*
 void	ft_assign_closest_upper(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*a_node;
@@ -127,16 +128,62 @@ void	ft_assign_closest_upper(t_list **stack_a, t_list **stack_b)
 		}
 		if (closest_upper == INT_MAX)
 		{
-			b_node->closest_upper = ft_find_min_node(stack_a)->index;
+			closest_upper = ft_find_min_node(stack_a)->index;
 			closest_upper_address = ft_find_min_node(stack_a);
-			a_node->closest_upper = b_node->closest_upper;
+			a_node->closest_upper = b_node->closest_upper;  --> por que inclui esta linea????
 		}
 		b_node->closest_upper = closest_upper;
 		b_node->closest_upper_address = closest_upper_address;
 		b_node = b_node->next;	
 	}
 }
+*/
 
+
+
+void	ft_find_best_pushes(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*b_node;
+	t_list	*a_node;
+	int		lowest_sum_of_gaps;
+	int		current_sum_of_gaps;
+	int		a_gap_to_top;
+	int		b_gap_to_top;
+
+	a_node = *stack_a;
+	b_node = *stack_b;
+	lowest_sum_of_gaps = INT_MAX;
+	while (b_node) 
+	{
+		current_sum_of_gaps = (ft_abs(b_node->a_gap_to_top) + ft_abs(b_node->b_gap_to_top));
+		if (current_sum_of_gaps < lowest_sum_of_gaps)
+		{
+			lowest_sum_of_gaps = current_sum_of_gaps;
+			a_gap_to_top = a_node->a_gap_to_top;
+			b_gap_to_top = b_node->b_gap_to_top;
+		}
+		b_node = b_node->next;
+printf("'ft_find_best_pushes' results:\n");
+printf("'a_gap_to_top = %d\n", a_gap_to_top);
+printf("'b_gap_to_top = %d\n", b_gap_to_top);
+	}
+//	ft_choose_commands(**stack_a, **stack_b, a_number_of_commands, b_number_of_commands)
+}
+/*
+void	ft_choose_commands(t_list **stack_a, t_list **stack_b, int a_number_of_commands, int b_number_of_commands)
+{
+	if ()
+}
+*/
+/*
+	Funcion que devuelve la direccion del nodo que contiene el 'closest_upper' en a del 
+	'best_push' del 'stack_b'. La abandono porque, aunque aparentemente al recuperar el 
+	valor del 'best_push' de 'stack a' a traves de su direccion almacenada en la variable
+	(int *closest_upper_address) del 'best_push' del 'stack_b' obtengo el valor correcto
+	si lo imprimo en pantalla, cuando le pido al programa que suba el 'best_push' de 
+	'stack_a' al top, no siempre ejecuta el numero de comandos necesario.
+*/
+/*
 t_list	*ft_find_best_push(t_list **stack_b)
 {
 	t_list *b_node;
@@ -161,7 +208,8 @@ t_list	*ft_find_best_push(t_list **stack_b)
 	}
 	return(best_push_address);
 }
-
+*/
+/*
 void	ft_choose_single_commands(t_list **stack_a, t_list **stack_b, t_list *b_best_push, int *command_counter)
 {
 	t_list	*a_best_push;
@@ -322,7 +370,7 @@ printf("\tA_gap = %d\tB_gap = %d\ti = %d\n", b_best_push->closest_upper_address-
 printf("\tA_best = %d\tB_best = %d\n", b_best_push->closest_upper_address->index, b_best_push->index);
 printf("\tA_gap = %d\tB_gap = %d\ti = %d\n", b_best_push->closest_upper_address->gap_to_top, b_best_push->gap_to_top, i);		
 }
-
+*/
 /*
 int	main(int argc, char **argv)
 {
