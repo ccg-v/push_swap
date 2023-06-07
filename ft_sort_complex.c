@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:42:08 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/07 00:01:21 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/07 23:17:16 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ void	ft_find_best_pushes(t_list **stack_a, t_list **stack_b)
 	while (b_node) 
 	{
 		current_sum_of_gaps = (ft_abs(b_node->a_gap_to_top) + ft_abs(b_node->b_gap_to_top));
+printf("current_sum_of_gaps = %d/n", current_sum_of_gaps);
 		if (current_sum_of_gaps < lowest_sum_of_gaps)
 		{
 			lowest_sum_of_gaps = current_sum_of_gaps;

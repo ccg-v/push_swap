@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:53:47 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/06 23:42:30 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/07 20:34:52 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void 	ft_reverse_rotate(t_list **stack, char *move_name, int *command_counter)
 	*stack = new_head;
 	new_head->next = old_head;
 	new_tail->next = NULL;
-	ft_assign_places(stack);
+//	ft_assign_places(stack);
 //	ft_assign_gaps(stack);
 //	ft_assign_dist_to_right_place(stack);
 	if (strncmp(move_name, "rrr", 3) != 0)

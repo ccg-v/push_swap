@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:00:14 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/07 00:45:18 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/07 23:36:27 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void ft_assign_indexes(t_list **lst)
 	in the list, and use it to initialize the 'min' variable. But obviously,
 	the first solution is pretty much smart.
 */
+
 void ft_assign_gaps(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*a_current;
@@ -141,6 +142,8 @@ void	ft_set_assignments(t_list **stack_a, t_list **stack_b)
 {
 	if (stack_a && *stack_a != NULL)
 	{
+		if ((*stack_a)->index == 0)
+			 ft_assign_indexes(stack_a);
 		ft_assign_places(stack_a);
 		if (stack_b && *stack_b != NULL)
 		{
