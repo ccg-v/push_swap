@@ -6,14 +6,13 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:53:47 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/07 21:06:26 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/04 22:55:02 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 //	OJO!!! TENGO QUE SUSTITUIR strncmp POR MI PROPIA FUNCION DE LIBFT!!!!!!!!!!
-//	OJO!!! REEMPLAZAR PRINTF!!!!!!!
 
 void	ft_rotate(t_list **stack, char *move_name, int *command_counter)
 {
@@ -30,8 +29,8 @@ void	ft_rotate(t_list **stack, char *move_name, int *command_counter)
 	tail = tmp;
 	tail->next = head;
 	head->next = NULL;
-//	ft_assign_places(stack);
-//	ft_assign_gaps(stack);
+	ft_assign_places(stack);
+	ft_assign_gaps(stack);
 //	ft_assign_dist_to_right_place(stack);
 	if (strncmp(move_name, "rr", 3) != 0)
 	{

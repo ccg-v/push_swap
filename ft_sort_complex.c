@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 21:42:08 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/07 23:17:16 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/08 20:49:23 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,9 @@ int	ft_abs(int num)
 		return (num * -1);
 	return (num);
 }
-/*
-void	ft_assign_gaps(t_list **stack)
-{
-	t_list  *current;
-	int	    stack_size;  
-	int		gap_to_top; 	
 
-	current = *stack;
-	gap_to_top = 0;
-    stack_size = ft_list_size(*stack);
-	while (current && (current->place <= (stack_size / 2)))
-	{
-		current->gap_to_top = gap_to_top++;
-		current = current->next;
-	}
-	if (stack_size % 2 == 0)
-		gap_to_top--;
-	while (current && (current->place > (stack_size / 2)))
-	{
-		current->gap_to_top = (--gap_to_top) * -1;
-		current = current->next;
-	}
-}
-*/
+
+
 // No hay simetria, empieza en 0 y termina en -1 porque el ultimo
 // elemento necesita una rotacion inversa para colocarse arriba y 
 // poder moverlo a B.
@@ -103,88 +82,6 @@ void	ft_assign_gaps_a(t_list **stack)
 }
 */
 
-/*
-void	ft_assign_closest_upper(t_list **stack_a, t_list **stack_b)
-{
-	t_list	*a_node;
-	t_list	*b_node;
-	int		closest_upper;
-	t_list	*closest_upper_address;
-
-	closest_upper_address = NULL;
-	b_node = *stack_b;
-	while (b_node)
-	{
-		closest_upper = INT_MAX;
-		a_node = *stack_a;
-		while(a_node)
-		{
-			if (a_node->index > b_node->index && a_node->index < closest_upper)
-			{
-				closest_upper = a_node->index;
-				closest_upper_address = a_node;
-			}
-			a_node = a_node->next;
-		}
-		if (closest_upper == INT_MAX)
-		{
-			closest_upper = ft_find_min_node(stack_a)->index;
-			closest_upper_address = ft_find_min_node(stack_a);
-			a_node->closest_upper = b_node->closest_upper;  --> por que inclui esta linea????
-		}
-		b_node->closest_upper = closest_upper;
-		b_node->closest_upper_address = closest_upper_address;
-		b_node = b_node->next;	
-	}
-}
-*/
-
-
-
-void	ft_find_best_pushes(t_list **stack_a, t_list **stack_b)
-{
-	t_list	*b_node;
-	t_list	*a_node;
-	int		lowest_sum_of_gaps;
-	int		current_sum_of_gaps;
-	int		a_gap_to_top;
-	int		b_gap_to_top;
-
-	a_node = *stack_a;
-	b_node = *stack_b;
-	lowest_sum_of_gaps = INT_MAX;
-	while (b_node) 
-	{
-		current_sum_of_gaps = (ft_abs(b_node->a_gap_to_top) + ft_abs(b_node->b_gap_to_top));
-printf("current_sum_of_gaps = %d/n", current_sum_of_gaps);
-		if (current_sum_of_gaps < lowest_sum_of_gaps)
-		{
-			lowest_sum_of_gaps = current_sum_of_gaps;
-			a_gap_to_top = a_node->a_gap_to_top;
-			b_gap_to_top = b_node->b_gap_to_top;
-		}
-		b_node = b_node->next;
-printf("'ft_find_best_pushes' results:\n");
-printf("'a_gap_to_top = %d\n", a_gap_to_top);
-printf("'b_gap_to_top = %d\n", b_gap_to_top);
-	}
-//	ft_choose_commands(**stack_a, **stack_b, a_number_of_commands, b_number_of_commands)
-}
-/*
-void	ft_choose_commands(t_list **stack_a, t_list **stack_b, int a_number_of_commands, int b_number_of_commands)
-{
-	if ()
-}
-*/
-/*
-	Funcion que devuelve la direccion del nodo que contiene el 'closest_upper' en a del 
-	'best_push' del 'stack_b'. La abandono porque, aunque aparentemente al recuperar el 
-	valor del 'best_push' de 'stack a' a traves de su direccion almacenada en la variable
-	(int *closest_upper_address) del 'best_push' del 'stack_b' obtengo el valor correcto
-	si lo imprimo en pantalla, cuando le pido al programa que suba el 'best_push' de 
-	'stack_a' al top, no siempre ejecuta el numero de comandos necesario.
-*/
-/*
 t_list	*ft_find_best_push(t_list **stack_b)
 {
 	t_list *b_node;
@@ -202,12 +99,120 @@ t_list	*ft_find_best_push(t_list **stack_b)
 			lowest_sum_of_gaps = current_sum_of_gaps;
 			best_push_address = b_node;
 		}
-		if (current_sum_of_gaps == 0 || current_sum_of_gaps == ft_abs(1))
-			return(best_push_address);
-		else
+//		if (current_sum_of_gaps == 0 || current_sum_of_gaps == ft_abs(1))
+//			return(best_push_address);
+//		else
 			b_node = b_node->next;
 	}
 	return(best_push_address);
+}
+
+void	ft_choose_single_commands(t_list **stack_a, t_list **stack_b, t_list *b_best_push, int *command_counter)
+{
+	t_list	*a_best_push;
+	int		a_gap;
+	int		b_gap;
+	
+	a_best_push = b_best_push->closest_upper_address; // change to a_best_push = ft_find_best_push(stack_b) y lo elimino del main?????
+	a_gap = a_best_push->gap_to_top;
+	b_gap = b_best_push->gap_to_top;
+
+	if (a_gap > 0 && b_gap > 0)
+	{
+		while (a_gap > 0 && b_gap > 0)
+		{
+			a_gap--;
+			b_gap--;
+			ft_rotate_both(stack_a, stack_b, command_counter);
+		}
+	}
+	else if (a_gap < 0 && b_gap < 0)
+	{
+		while (a_gap < 0 && b_gap < 0)
+		{
+			a_gap++;
+			b_gap++;
+			ft_reverse_rotate_both(stack_a, stack_b, command_counter);
+		}
+	}
+	while (a_best_push->gap_to_top)
+	{
+		if (a_gap > 0)
+		{
+			ft_rotate(stack_a, "ra", command_counter);
+			a_gap--;
+		}
+		else if(a_gap < 0)
+		{
+			ft_reverse_rotate(stack_a, "rra", command_counter);
+			a_gap++;
+		}
+	}
+	while (b_gap)
+	{
+		if (b_gap > 0)
+		{
+			ft_rotate(stack_b, "rb", command_counter);
+			b_gap--;
+		}
+		else if(b_gap < 0)
+		{
+			ft_reverse_rotate(stack_b, "rrb", command_counter);
+			b_gap++;
+		}
+	}
+	ft_push(stack_a, stack_b, "pa", command_counter);
+}
+/*
+void	ft_choose_single_commands(t_list **stack_a, t_list **stack_b, t_list *b_best_push, int *command_counter)
+{
+	t_list	*a_best_push;
+	
+	a_best_push = b_best_push->closest_upper_address; // change to a_best_push = ft_find_best_push(stack_b) y lo elimino del main?????
+	if (a_best_push->gap_to_top > 0 && b_best_push->gap_to_top > 0)
+	{
+		while (a_best_push->gap_to_top > 0 && b_best_push->gap_to_top > 0)
+		{
+			(a_best_push->gap_to_top)--;
+			(b_best_push->gap_to_top)--;
+			ft_rotate_both(stack_a, stack_b, command_counter);
+		}
+	}
+	else if (a_best_push->gap_to_top < 0 && b_best_push->gap_to_top < 0)
+	{
+		while (a_best_push->gap_to_top < 0 && b_best_push->gap_to_top < 0)
+		{
+			(a_best_push->gap_to_top)++;
+			(b_best_push->gap_to_top)++;
+			ft_reverse_rotate_both(stack_a, stack_b, command_counter);
+		}
+	}
+	while (a_best_push->gap_to_top)
+	{
+		if (a_best_push->gap_to_top > 0)
+		{
+			ft_rotate(stack_a, "ra", command_counter);
+			(a_best_push->gap_to_top)--;
+		}
+		else if(a_best_push->gap_to_top < 0)
+		{
+			ft_reverse_rotate(stack_a, "rra", command_counter);
+			(a_best_push->gap_to_top)++;
+		}
+	}
+	while (b_best_push->gap_to_top)
+	{
+		if (b_best_push->gap_to_top > 0)
+		{
+			ft_rotate(stack_b, "rb", command_counter);
+			(b_best_push->gap_to_top)--;
+		}
+		else if(b_best_push->gap_to_top < 0)
+		{
+			ft_reverse_rotate(stack_b, "rrb", command_counter);
+			(b_best_push->gap_to_top)++;
+		}
+	}
 }
 */
 /*

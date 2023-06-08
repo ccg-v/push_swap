@@ -6,7 +6,7 @@
 #    By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/07 19:25:44 by ccarrace          #+#    #+#              #
-#    Updated: 2023/06/07 00:23:29 by ccarrace         ###   ########.fr        #
+#    Updated: 2023/06/08 00:31:26 by ccarrace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NAME			=		push_swap
 
 SRC_FILES =	ft_check_input.c \
 			ft_create_and_fill_stack.c \
-			ft_assign_stack_variables.c \
+			ft_set_assignments.c \
 			ft_list_size.c \
 			ft_is_sorted.c \
 			ft_moves_push.c \
