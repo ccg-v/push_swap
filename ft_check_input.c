@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:20:52 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/05/15 20:09:27 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/11 23:03:00 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ static int	ft_is_digit(int argc, char **argv)
 	while (i < argc)
 	{
 		j = 0;
+		if (!argv[i][j])
+			return (0);
 		len = ft_strlen(argv[i]);
-		if (argv[i][j] == '-')
+		if (argv[i][j] == '-' && argv[i][j + 1])
 			j++;
 		while (j < len)
 		{
@@ -100,10 +102,12 @@ int	main(int argc, char **argv)
 
 int	ft_check_input(int argc, char **argv)
 {
-	if ((argc < 3) \
-		|| (!ft_is_digit(argc, argv)) \
-		|| (!ft_is_integer(argc, argv)) \
-		|| (ft_is_double(argc, argv) == 1))
+	if (argc == 1)
+		return (0);
+//	if (argc == 2)
+//		return (100);
+	else if ((!ft_is_digit(argc, argv)) \
+		|| (!ft_is_integer(argc, argv)) || (ft_is_double(argc, argv) == 1))
 	{
 		write(2, "Error\n", 6);
 		return (0);

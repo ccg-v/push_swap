@@ -6,15 +6,16 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 21:25:40 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/08 00:30:26 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/11 20:41:59 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*ft_create_node(int	num)
+t_list	*ft_create_node(int num)
 {
 	t_list	*node;
+
 	node = malloc(sizeof(t_list));
 	if (!node)
 		return (NULL);
@@ -54,7 +55,7 @@ void	ft_create_and_fill_stack(t_list **stack_a, int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
-		ft_add_to_back(stack_a, atoi(argv[i]));
+		ft_add_to_back(stack_a, ft_atoi(argv[i]));
 		i++;
 	}
 }

@@ -6,19 +6,19 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:07:40 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/08 00:41:19 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/11 19:07:34 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdio.h>		// write
 # include <stdlib.h>
 # include <string.h>	// strncmp (en ft_moves_....!!!!)
 # include <limits.h>	// INT_MAX
 # include <stddef.h>	// size_t
 # include <unistd.h>	// write
+# include <stdio.h>		// printf (when debugging only)
 
  typedef struct	s_list
  {
@@ -26,8 +26,6 @@
 		int				place;
 		int				index;
 		int				gap_to_top;
-//		int				gap_to_bottom;
-//		int				dist_to_right_place;
 		int				closest_upper;
 		struct s_list	*closest_upper_address;
 		struct s_list	*next;
@@ -35,7 +33,9 @@
 
 //			Library functions
 long		ft_atol(const char *str);
-void		ft_putstr_fd(char *s, int fd);
+int			ft_atoi(const char *str);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+int			ft_abs(int num);
 
 //			List creation 
  t_list		*ft_create_node(int num);
@@ -46,7 +46,9 @@ void		ft_putstr_fd(char *s, int fd);
  int		ft_list_size(t_list *lst);
  t_list		*ft_find_max_node(t_list **lst);
  t_list		*ft_find_min_node(t_list **lst);
-
+ int		ft_is_sorted(t_list *lst);
+ void		free_stack(t_list **stack);
+ 
 //			Movements
  void		ft_push(t_list **dst, t_list **src, char *stack_name, int *command_counter);
  void		ft_swap(t_list **stack, char *move_name, int *command_counter);
@@ -70,14 +72,11 @@ void		ft_putstr_fd(char *s, int fd);
  void		ft_sort_few(t_list **stack_a, t_list **stack_b, int *command_counter);
  void		ft_sort_complex(t_list **stack_a, t_list **stack_b, int *command_counter);
 
-//			Sort utilities
-;
- int		ft_is_sorted(t_list *lst);
+//			Sorting complementary functions
 
  t_list		*ft_find_best_push(t_list **stack_b);
  void		ft_send_minimum_index_to_top(t_list **stack, int *command_counter);
  void		ft_choose_single_commands(t_list **stack_a, t_list **stack_b, t_list *b_best_push, int *command_counter);
-
  void		ft_print_list(t_list *lst, char stack_name);
 
 #endif
