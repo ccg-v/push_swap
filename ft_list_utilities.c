@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:31:22 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/11 20:22:46 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/15 00:05:39 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	free_stack(t_list **stack)
 	while (current)
 	{
 		tmp = current->next;
-//		free(void	exit_error(t_list **stack_a, t_list **stack_b)
 		free(current);
 		current = tmp;
 	}

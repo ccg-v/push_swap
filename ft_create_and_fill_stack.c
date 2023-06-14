@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 21:25:40 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/11 20:41:59 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/15 00:24:11 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_create_and_fill_stack(t_list **stack_a, int argc, char **argv)
 {
 	int	i;
 
-	i = 1;
+	i = 0;
 	while (i < argc)
 	{
 		ft_add_to_back(stack_a, ft_atoi(argv[i]));

@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:00:14 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/11 22:08:31 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/14 21:33:55 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ void	ft_assign_gaps(t_list **stack)
 }
 
 /*
-	-------	ft_assign_closest_upper
+	-------	ft_assign_closest_upper -------------------------------------------
+	
 	It was initially four lines longer than allowed, so I replaced this 
 	original condition:
 		>	if (closest_upper == INT_MAX)
@@ -99,22 +100,20 @@ void	ft_assign_gaps(t_list **stack)
 	still sorts the number properly.
 */
 
-void	ft_assign_closest_upper(t_list **stack_a, t_list **stack_b)
+void	ft_assign_closest_upper(t_list *stack_a, t_list *stack_b)
 {
 	t_list	*a_node;
-	t_list	*b_node;
 	t_list	*closest_upper_address;
 	int		closest_upper;
 
-	b_node = *stack_b;
 	closest_upper_address = NULL;
-	while (b_node)
+	while (stack_b)
 	{
 		closest_upper = INT_MAX;
-		a_node = *stack_a;
+		a_node = stack_a;
 		while (a_node)
 		{
-			if (a_node->index > b_node->index && a_node->index < closest_upper)
+			if (a_node->index > stack_b->index && a_node->index < closest_upper)
 			{
 				closest_upper = a_node->index;
 				closest_upper_address = a_node;
@@ -122,10 +121,10 @@ void	ft_assign_closest_upper(t_list **stack_a, t_list **stack_b)
 			a_node = a_node->next;
 		}
 		if (closest_upper == INT_MAX)
-			closest_upper_address = ft_find_min_node(stack_a);
-		b_node->closest_upper = closest_upper;
-		b_node->closest_upper_address = closest_upper_address;
-		b_node = b_node->next;
+			closest_upper_address = ft_find_min_node(&stack_a);
+		stack_b->closest_upper = closest_upper;
+		stack_b->closest_upper_address = closest_upper_address;
+		stack_b = stack_b->next;
 	}
 }
 
@@ -141,7 +140,7 @@ void	ft_set_assignments(t_list **stack_a, t_list **stack_b)
 		{
 			ft_assign_places(stack_b);
 			ft_assign_gaps(stack_b);
-			ft_assign_closest_upper(stack_a, stack_b);
+			ft_assign_closest_upper(*stack_a, *stack_b);
 		}
 	}
 }

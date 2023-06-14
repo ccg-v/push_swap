@@ -6,12 +6,22 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 14:12:04 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/11 20:14:32 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/14 19:33:57 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
+
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (*str++)
+		i++;
+	return (i);
+}
 
 int	ft_atoi(const char *str)
 {

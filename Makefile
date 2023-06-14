@@ -6,14 +6,14 @@
 #    By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/07 19:25:44 by ccarrace          #+#    #+#              #
-#    Updated: 2023/06/11 18:02:51 by ccarrace         ###   ########.fr        #
+#    Updated: 2023/06/15 00:16:43 by ccarrace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # --- Constants -------------------------------------------------------------- #
 
 CC				=		gcc
-CFLAGS			=		-MMD -Wall -Wextra -Werror
+CFLAGS			=		-MMD -Wall -Wextra -Werror -g
 HEADER_NAME		=		push_swap.h
 NAME			=		push_swap
 
@@ -35,8 +35,8 @@ SRC_FILES =	ft_check_input.c \
 			ft_sort_simple.c \
 			ft_sort_complex.c \
 			ft_library.c \
-			push_swap.c \
-			ft_print_list.c
+			ft_split.c \
+			push_swap.c
 
 # --- Macros / variables ----------------------------------------------------- #
 
