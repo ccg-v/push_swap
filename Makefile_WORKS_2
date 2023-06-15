@@ -6,7 +6,7 @@
 #    By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/07 19:25:44 by ccarrace          #+#    #+#              #
-#    Updated: 2023/06/15 23:43:55 by ccarrace         ###   ########.fr        #
+#    Updated: 2023/06/15 23:06:52 by ccarrace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ CFLAGS			=		-MMD -Wall -Wextra -Werror
 
 # --- Directories ------------------------------------------------------------ #
 
-HEADER_DIR		=		inc/
 PRINTF_DIR		=		ft_printf/
 
 # --- Includes --------------------------------------------------------------- #
@@ -33,7 +32,6 @@ PRINTF_INCLUDE	=		-I $(PRINTF_DIR)
 
 # --- Paths ------------------------------------------------------------------ #
 
-HEADER_PATH 	= 		$(addprefix $(HEADER_DIR), $(HEADER_NAME))
 PRINTF_LIB		=		$(addprefix $(PRINTF_DIR), $(PRINTF_NAME))
 
 # --- Files ------------------------------------------------------------------ #
@@ -67,7 +65,7 @@ $(NAME): $(OBJ_FILES) $(PRINTF_LIB)
 	$(CC) $(CFLAGS) $(OBJ_FILES) $(PRINTF_LIB) -o $@
 
 %.o: %.c 
-	$(CC) -c $(CFLAGS) $(HEADER_INCLUDE) $(PRINTF_INCLUDE) $< -o $@
+	$(CC) -c $(CFLAGS) $(PRINTF_INCLUDE) $< -o $@
 
 
 # --- Cleaning rules --------------------------------------------------------- #

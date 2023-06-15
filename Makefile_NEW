@@ -6,7 +6,7 @@
 #    By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/07 19:25:44 by ccarrace          #+#    #+#              #
-#    Updated: 2023/06/15 23:43:55 by ccarrace         ###   ########.fr        #
+#    Updated: 2023/06/15 21:36:20 by ccarrace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,12 @@
 CC				=		gcc
 HEADER_NAME		=		push_swap.h
 NAME			=		push_swap
-PRINTF_NAME		=		libftprintf.a
 
 # --- Compiler flags --------------------------------------------------------- #
 
 CFLAGS			=		-MMD -Wall -Wextra -Werror
 
-# --- Directories ------------------------------------------------------------ #
+# --- Folders ---------------------------------------------------------------- #
 
 HEADER_DIR		=		inc/
 PRINTF_DIR		=		ft_printf/
@@ -33,8 +32,8 @@ PRINTF_INCLUDE	=		-I $(PRINTF_DIR)
 
 # --- Paths ------------------------------------------------------------------ #
 
-HEADER_PATH 	= 		$(addprefix $(HEADER_DIR), $(HEADER_NAME))
-PRINTF_LIB		=		$(addprefix $(PRINTF_DIR), $(PRINTF_NAME))
+#HEADER_PATH = $(addprefix $(HEADER_DIR), $(HEADER_NAME))
+PRINTF_LIB		=		$(PRINTF_DIR)/libftprintf.a
 
 # --- Files ------------------------------------------------------------------ #
 
@@ -52,23 +51,20 @@ SRC_FILES =	ft_check_input.c \
 			ft_split.c \
 			push_swap.c
 
-# --- Macros / variables ----------------------------------------------------- #
+# --- Macros ----------------------------------------------------------------- #
 
 OBJ_FILES =	$(SRC_FILES:.c=.o)
 DEP_FILES =	$(SRC_FILES:.c=.d)
 
 # --- Compilation rules ------------------------------------------------------ #
 
-all: 
-			$(MAKE) -C $(PRINTF_DIR)
-			$(MAKE) $(NAME)
+all:	$(NAME)
 
 $(NAME): $(OBJ_FILES) $(PRINTF_LIB)
-	$(CC) $(CFLAGS) $(OBJ_FILES) $(PRINTF_LIB) -o $@
+		$(CC) $(CFLAGS) $(OBJ_FILES) $(PRINTF_LIB) -o $@
 
-%.o: %.c 
+%.o: %.c
 	$(CC) -c $(CFLAGS) $(HEADER_INCLUDE) $(PRINTF_INCLUDE) $< -o $@
-
 
 # --- Cleaning rules --------------------------------------------------------- #
 
