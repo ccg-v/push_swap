@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:07:40 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/15 00:36:02 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/16 19:20:46 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int			ft_list_size(t_list *lst);
 t_list		*ft_find_max_node(t_list **lst);
 t_list		*ft_find_min_node(t_list **lst);
 int			ft_is_sorted(t_list *lst);
-void		free_stack(t_list **stack);
 
 //			Movements
 void		ft_push(t_list **dst, t_list **src, char *stack_name);
@@ -70,14 +69,13 @@ void		ft_assign_closest_upper(t_list *stack_a, t_list *stack_b);
 void		ft_set_assignments(t_list **stack_a, t_list **stack_b);
 
 //			Sorting process
-void		ft_split_if_quoted_args(int *argc, char ***argv);
+int			ft_split_if_quoted_args(int *argc, char ***argv);
 int			ft_check_input(int argc, char **argv);
 void		ft_sort_three(t_list **stack);
 void		ft_sort_few(t_list **stack_a, t_list **stack_b);
 void		ft_sort_complex(t_list **stack_a, t_list **stack_b);
 
 //			Sorting complementary functions
-
 t_list		*ft_find_best_push(t_list **stack_b);
 void		ft_send_minimum_index_to_top(t_list **stack);
 void		ft_choose_commands(t_list **stack_a, t_list **stack_b, \

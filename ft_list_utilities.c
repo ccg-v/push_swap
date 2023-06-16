@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:31:22 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/15 00:05:39 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/16 19:15:30 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,21 +69,4 @@ int	ft_is_sorted(t_list *lst)
 		tmp = tmp->next;
 	}
 	return (1);
-}
-
-void	free_stack(t_list **stack)
-{
-	t_list	*tmp;
-	t_list	*current;
-
-	if (!stack || !(*stack))
-		return ;
-	current = *stack;
-	while (current)
-	{
-		tmp = current->next;
-		free(current);
-		current = tmp;
-	}
-	*stack = NULL;
 }

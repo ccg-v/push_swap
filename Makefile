@@ -6,7 +6,7 @@
 #    By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/07 19:25:44 by ccarrace          #+#    #+#              #
-#    Updated: 2023/06/15 23:43:55 by ccarrace         ###   ########.fr        #
+#    Updated: 2023/06/16 19:26:00 by ccarrace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ all:
 $(NAME): $(OBJ_FILES) $(PRINTF_LIB)
 	$(CC) $(CFLAGS) $(OBJ_FILES) $(PRINTF_LIB) -o $@
 
-%.o: %.c 
+%.o: %.c Makefile
 	$(CC) -c $(CFLAGS) $(HEADER_INCLUDE) $(PRINTF_INCLUDE) $< -o $@
 
 

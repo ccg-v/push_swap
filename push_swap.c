@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 19:16:01 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/15 00:18:20 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/16 19:17:05 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,47 @@ static void	ft_complex_sort(t_list **stack_a, t_list **stack_b)
 	ft_send_minimum_index_to_top(stack_a);
 }
 
+static void	ft_free_array_of_strings(char **argv)
+{
+	int	i;
+
+	i = 0;
+	if (argv == NULL || *argv == NULL)
+		return ;
+	while (argv[i])
+	{
+		free(argv[i]);
+		i++;
+	}
+	free(argv);
+}
+
+static void	free_stack(t_list **stack)
+{
+	t_list	*tmp;
+	t_list	*current;
+
+	if (!stack || !(*stack))
+		return ;
+	current = *stack;
+	while (current)
+	{
+		tmp = current->next;
+		free(current);
+		current = tmp;
+	}
+	*stack = NULL;
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
+	int		arg_is_quoted;
 
 	stack_a = NULL;
 	stack_b = NULL;
-	ft_split_if_quoted_args(&argc, &argv);
+	arg_is_quoted = ft_split_if_quoted_args(&argc, &argv);
 	if (ft_check_input(argc, argv) == 1)
 	{
 		ft_create_and_fill_stack(&stack_a, argc, argv);
@@ -56,6 +89,8 @@ int	main(int argc, char **argv)
 			ft_simple_sort(&stack_a, &stack_b);
 		else if (!ft_is_sorted(stack_a))
 			ft_complex_sort(&stack_a, &stack_b);
+		if (arg_is_quoted == 1)
+			ft_free_array_of_strings(argv);
 		free_stack(&stack_a);
 		free_stack(&stack_b);
 	}

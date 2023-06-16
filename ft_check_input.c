@@ -6,7 +6,7 @@
 /*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:20:52 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/15 00:23:50 by ccarrace         ###   ########.fr       */
+/*   Updated: 2023/06/16 18:01:47 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static int	ft_is_double(int argc, char **argv)
 		in a normal sequence of non-quoted arguments it will start from the 
 		program's name.
 */
-void	ft_split_if_quoted_args(int *argc, char ***argv)
+int	ft_split_if_quoted_args(int *argc, char ***argv)
 {
 	char	*str;
 
@@ -99,12 +99,14 @@ void	ft_split_if_quoted_args(int *argc, char ***argv)
 		str = (*argv)[1];
 		*argv = ft_split(str, ' ');
 		*argc = ft_word_counter(str, ' ');
+		return (1);
 	}
 	else
 	{
 		(*argv)++;
 		(*argc)--;
-	}	
+	}
+	return (0);
 }
 
 int	ft_check_input(int argc, char **argv)
