@@ -6,14 +6,14 @@
 #    By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/07 19:25:44 by ccarrace          #+#    #+#              #
-#    Updated: 2023/06/16 19:26:00 by ccarrace         ###   ########.fr        #
+#    Updated: 2024/10/29 22:29:24 by ccarrace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # --- Variables -------------------------------------------------------------- #
 
 CC				=		gcc
-HEADER_NAME		=		push_swap.h
+#HEADER_NAME		=		push_swap.h
 NAME			=		push_swap
 PRINTF_NAME		=		libftprintf.a
 
@@ -23,17 +23,18 @@ CFLAGS			=		-MMD -Wall -Wextra -Werror
 
 # --- Directories ------------------------------------------------------------ #
 
-HEADER_DIR		=		inc/
+INC_DIR			=		inc/
+SRC_DIR			=		src/
+OBJ_DIR			=		obj/
+DEP_DIR			=		$(OBJ_DIR)
 PRINTF_DIR		=		ft_printf/
 
 # --- Includes --------------------------------------------------------------- #
 
-HEADER_INCLUDE	=		-I $(HEADER_DIR)
-PRINTF_INCLUDE	=		-I $(PRINTF_DIR)
+INCLUDES		=		-I $(INC_DIR) -I $(PRINTF_DIR)
 
 # --- Paths ------------------------------------------------------------------ #
 
-HEADER_PATH 	= 		$(addprefix $(HEADER_DIR), $(HEADER_NAME))
 PRINTF_LIB		=		$(addprefix $(PRINTF_DIR), $(PRINTF_NAME))
 
 # --- Files ------------------------------------------------------------------ #
@@ -52,28 +53,35 @@ SRC_FILES =	ft_check_input.c \
 			ft_split.c \
 			push_swap.c
 
-# --- Macros / variables ----------------------------------------------------- #
+OBJ_FILES =	$(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
+DEP_FILES =	$(addprefix $(DEP_DIR), $(SRC_FILES:.c=.d))
 
-OBJ_FILES =	$(SRC_FILES:.c=.o)
-DEP_FILES =	$(SRC_FILES:.c=.d)
+# --- Building rules ---------------------------------------------------------- #
 
-# --- Compilation rules ------------------------------------------------------ #
+all: $(OBJ_DIR) $(NAME)
 
-all: 
-			$(MAKE) -C $(PRINTF_DIR)
-			$(MAKE) $(NAME)
+# --- Object building rules --------------------------------------------------- #
 
-$(NAME): $(OBJ_FILES) $(PRINTF_LIB)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+$(PRINTF_LIB):
+	$(MAKE) -C $(PRINTF_DIR)
+
+# Object file building rule
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	$(CC) -c $(CFLAGS) $(INCLUDES) $< -o $@
+
+# --- Program building rules ------------------------------------------------- #
+
+$(NAME): $(OBJ_FILES) $(PRINTF_LIB) Makefile
 	$(CC) $(CFLAGS) $(OBJ_FILES) $(PRINTF_LIB) -o $@
-
-%.o: %.c Makefile
-	$(CC) -c $(CFLAGS) $(HEADER_INCLUDE) $(PRINTF_INCLUDE) $< -o $@
-
 
 # --- Cleaning rules --------------------------------------------------------- #
 
 clean:
-				rm -f $(OBJ_FILES) $(DEP_FILES)
+				rm -f $(OBJ_PATH) $(DEP_PATH)
+				rm -rf $(OBJ_DIR)
 				$(MAKE) -C $(PRINTF_DIR) clean
 
 fclean:			clean
@@ -84,4 +92,4 @@ re:				fclean all
 
 .PHONY:			all clean fclean re
 
--include		$(DEP_FILES)
+-include		$(DEP_PATH)

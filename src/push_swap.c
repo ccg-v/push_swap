@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccarrace <ccarrace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccarrace <ccarrace@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 19:16:01 by ccarrace          #+#    #+#             */
-/*   Updated: 2023/06/16 19:17:05 by ccarrace         ###   ########.fr       */
+/*   Updated: 2025/06/17 01:38:45 by ccarrace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ int	main(int argc, char **argv)
 
 	stack_a = NULL;
 	stack_b = NULL;
-	arg_is_quoted = ft_split_if_quoted_args(&argc, &argv);
+	if (argc > 1)
+		arg_is_quoted = ft_split_if_quoted_args(&argc, &argv);
 	if (ft_check_input(argc, argv) == 1)
 	{
 		ft_create_and_fill_stack(&stack_a, argc, argv);

@@ -3,7 +3,8 @@
 # To run: ./tester.sh
 
 MAX=25
-NUMS=$(ruby -e "puts (1..${MAX}).to_a.shuffle.join(' ')")
+NUMS=$(shuf -i 1-$MAX | tr '\n' ' ')
 
 echo "Generated sequence: $NUMS"
+echo -n "Total movements: "
 ./push_swap $NUMS | wc -l
